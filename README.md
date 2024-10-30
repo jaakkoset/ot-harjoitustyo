@@ -4,4 +4,4 @@ Teen **kielenharjoittelusovelluksen**, jossa käyttäjä *ratkoo kieleen liittyv
 
 ## Viikkoraportit
 
-[viikko1](./laskarit/vikko1.md)
+[viikko1](./laskarit/viikko1.md)
