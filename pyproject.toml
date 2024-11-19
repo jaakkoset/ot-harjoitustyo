@@ -6,11 +6,12 @@ authors = ["Jaakko Airikkala <jaakkel@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
+coverage = "^7.6.7"
 
 [build-system]
 requires = ["poetry-core"]
