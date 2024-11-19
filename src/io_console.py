@@ -1,4 +1,4 @@
-"""Class IOConsole provides methods for interacting with user"""
+"""Class IOConsole provides methods for interacting with the user"""
 
 
 class IOConsole:

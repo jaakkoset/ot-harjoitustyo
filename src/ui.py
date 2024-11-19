@@ -2,7 +2,8 @@
 User interface
 
 Class:
-    Program"""
+    Program
+"""
 
 from word_test import WordTest
 

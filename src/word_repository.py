@@ -8,39 +8,35 @@ class WordRepository:
         self.words = [
             ("puella", ("tyttö",)),
             ("colōnus", ("maanviljelijä",)),
-            (
-                "puer",
-                (
-                    "poika",
-                    "lapsi",
-                ),
-            ),
+            ("puer", ("poika", "lapsi",)),
         ]
-        self.words2 = [
-            ("puella", ("tyttö")),
-            ("colōnus", ("maanviljelijä")),
-            ("puer", ("poika", "lapsi")),
-            ("bellum", ("sota")),
-            ("rēx", ("kuningas")),
-            ("lītus", ("ranta")),
-            ("nāvis", ("laiva")),
-            ("mare", ("meri")),
-            ("bonus", ("hyvä")),
-            ("pauper", ("köyhä")),
-            ("omnis", ("jokainen")),
-            ("parō", ("valmistaa", "valmistautua")),
-            ("moneō", ("varoittaa")),
-            ("regō", ("hallita")),
-            ("audiō", ("kuulla")),
-            ("capiō", ("ottaa")),
-        ]
+
+        # self.words2 = [
+        #     ("puella", ("tyttö")),
+        #     ("colōnus", ("maanviljelijä")),
+        #     ("puer", ("poika", "lapsi")),
+        #     ("bellum", ("sota")),
+        #     ("rēx", ("kuningas")),
+        #     ("lītus", ("ranta")),
+        #     ("nāvis", ("laiva")),
+        #     ("mare", ("meri")),
+        #     ("bonus", ("hyvä")),
+        #     ("pauper", ("köyhä")),
+        #     ("omnis", ("jokainen")),
+        #     ("parō", ("valmistaa", "valmistautua")),
+        #     ("moneō", ("varoittaa")),
+        #     ("regō", ("hallita")),
+        #     ("audiō", ("kuulla")),
+        #     ("capiō", ("ottaa")),
+        # ]
 
     def word_and_translations(self, ordinal: int) -> dict:
         """
         Return a Latin word and its Finnish translations in a tuple.
 
         Args:
-            ordinal: the ordinal number of the Latin word in the database."""
+            ordinal: the ordinal number of the Latin word in the database.
+        """
         word = {"word": self.words[ordinal][0], "translations": self.words[ordinal][1]}
         return word
 
