@@ -2,12 +2,16 @@
 
 Teen **kielenharjoittelusovelluksen**, jossa käyttäjä *ratkoo kieleen liittyviä tehtäviä*.
 
-## Viikkoraportit
+## Huomio Python-versiosta
 
-[viikko1](./laskarit/viikko1.md)
+Vaatimuksena on Python-versio `3.10`.
 
 ## Dokumentaatio
 
-[Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+* [viikko1](./laskarit/viikko1.md)
 
-[Työaikakirjanpito](./dokumentaatio/tyoaikakirjanpito.md)
+* [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+
+* [Työaikakirjanpito](./dokumentaatio/tyoaikakirjanpito.md)
+
+* [Changelog](./dokumentaatio/changelog.md)
