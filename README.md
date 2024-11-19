@@ -18,18 +18,18 @@ Vaatimuksena on Python-versio `3.10`.
 
 Asenna riippuvuudet komennolla
 
-`poetry install`
+    poetry install
 
 Käynnistä ohjelma komennolla 
 
-`poetry run invoke start`
+    poetry run invoke start
 
 ## Testaus
 
 Suorita testit komennolla
 
-`poetry run invoke test`
+    poetry run invoke test
 
 Luo html-muotoinen testikattavuusraportti komennolla
 
-`poetry run invoke coverage-report`
+    poetry run invoke coverage-report
