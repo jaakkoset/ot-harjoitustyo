@@ -1,5 +1,6 @@
-## Monopoli, alustava luokkakaavio
+## Monopolin alustava luokkakaavio
 
+```mermaid
 classDiagram
     Monopolipeli "1" -- "2" Noppa
     Monopolipeli "1" -- "1" Pelilauta
@@ -24,3 +25,4 @@ classDiagram
     Raha "*" -- Pelaaja
     Talo "0..4" -- NormaaliKatu
     Hotelli "0..1" -- NormaaliKatu
+```
