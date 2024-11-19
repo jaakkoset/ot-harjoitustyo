@@ -1,6 +1,8 @@
-"""User interface"""
+"""
+User interface
 
-from io_console import IOConsole
+Class:
+    Program"""
 
 COMMANDS = {
     "q": "q lopeta ohjelma",
@@ -27,10 +29,7 @@ class Program:
                 break
 
     def print_commands(self):
+        """Print all commands for the user"""
         self._io.write("Komennot:")
-        for command in COMMANDS:
-            self._io.write("" + command)
-
-
-if __name__ == "__main__":
-    Program(IOConsole()).program()
+        for command in COMMANDS.values():
+            self._io.write("  " + command)
