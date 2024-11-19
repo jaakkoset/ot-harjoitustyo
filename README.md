@@ -8,10 +8,28 @@ Vaatimuksena on Python-versio `3.10`.
 
 ## Dokumentaatio
 
-* [viikko1](./laskarit/viikko1.md)
-
 * [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 
 * [Työaikakirjanpito](./dokumentaatio/tyoaikakirjanpito.md)
 
 * [Changelog](./dokumentaatio/changelog.md)
+
+## Asennus
+
+Asenna riippuvuudet komennolla
+
+`poetry install`
+
+Käynnistä ohjelma komennolla 
+
+`poetry run invoke start`
+
+## Testaus
+
+Suorita testit komennolla
+
+`poetry run invoke test`
+
+Luo html-muotoinen testikattavuusraportti komennolla
+
+`poetry run invoke coverage-report`
