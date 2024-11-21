@@ -1,4 +1,4 @@
-"""class WordRepository provides methods for database queries involving words"""
+"""Class WordRepository provides methods for database queries involving words"""
 
 
 class WordRepository:
