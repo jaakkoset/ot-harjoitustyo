@@ -1,11 +1,5 @@
-"""
-User interface
-
-Class:
-    Program
-"""
-
 from word_test import WordTest
+
 
 COMMANDS = {
     "q": "q lopeta ohjelma",

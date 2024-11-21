@@ -1,21 +1,25 @@
+"""Functions for clearing and initializing the database"""
+
 from database_connection import get_database_connection
 
 
 def drop_tables(connection):
+    """Delete all tables in the database"""
     cursor = connection.cursor()
 
     cursor.execute('''
-        drop table if exists Word;
+        DROP TABLE IF EXISTS Word;
     ''')
 
     cursor.execute('''
-        drop table if exists Translations;
+        DROP TABLE IF EXISTS Translations;
     ''')
 
     connection.commit()
 
 
 def create_tables(connection):
+    """Create all tables"""
     cursor = connection.cursor()
 
     cursor.execute('''
@@ -40,6 +44,7 @@ def create_tables(connection):
 
 
 def initialize_database():
+    """Delete all tables if they exist and recreate them"""
     connection = get_database_connection()
 
     drop_tables(connection)
