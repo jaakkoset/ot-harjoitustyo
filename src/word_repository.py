@@ -37,7 +37,8 @@ class WordRepository:
         Args:
             ordinal: the ordinal number of the Latin word in the database.
         """
-        word = {"word": self.words[ordinal][0], "translations": self.words[ordinal][1]}
+        word = {"word": self.words[ordinal][0],
+                "translations": self.words[ordinal][1]}
         return word
 
     def words_with_translations(self):

@@ -4,7 +4,7 @@ from word_repository import WordRepository
 
 
 class WordTest:
-    """Methods for the word test"""
+    """Methods for word tests"""
 
     def __init__(self):
         self.db = WordRepository()
@@ -25,7 +25,7 @@ class WordTest:
         return self.word["word"]
 
     def translations(self) -> tuple:
-        """Return the translations in a tuple"""
+        """Return the Finnish translations in a tuple"""
         return self.word["translations"]
 
     def printable_translations(self) -> str:

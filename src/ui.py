@@ -40,8 +40,7 @@ class Program:
     def _word_test(self):
         """Ui for the word test."""
         test = WordTest()
-        self._io.write("Poistu kirjoittamalla x")
-        check = True
+        self._io.write("\nPoistu kirjoittamalla x")
 
         while True:
             latin_word = test.latin_word()
