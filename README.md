@@ -1,5 +1,7 @@
 # Ohjelmistotekniikka, harjoitustyö
 
+[![GHA workflow badge](https://github.com/jaakkoset/ohtuvarasto/workflows/CI/badge.svg)](https://github.com/jaakkoset/ohtuvarasto/actions)
+
 Teen **kielenharjoittelusovelluksen**, jossa käyttäjä *ratkoo kieleen liittyviä tehtäviä*.
 
 ## Huomio Python-versiosta
