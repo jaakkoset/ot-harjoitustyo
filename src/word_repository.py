@@ -4,7 +4,9 @@
 class WordRepository:
     """Methods for database queries involving words"""
 
-    def __init__(self):
+    def __init__(self, connection):
+        self._connection = connection
+
         self.words = [
             ("puella", ("tyttö",)),
             ("colōnus", ("maanviljelijä",)),
@@ -30,15 +32,15 @@ class WordRepository:
         #     ("capiō", ("ottaa")),
         # ]
 
-    def word_and_translations(self, ordinal: int) -> dict:
+    def word_and_translations(self, word_id: int) -> dict:
         """
         Return a Latin word and its Finnish translations in a tuple.
 
         Args:
-            ordinal: the ordinal number of the Latin word in the database.
+            word_id: the id number of the Latin word in the database.
         """
-        word = {"word": self.words[ordinal][0],
-                "translations": self.words[ordinal][1]}
+        word = {"word": self.words[word_id][0],
+                "translations": self.words[word_id][1]}
         return word
 
     def words_with_translations(self):

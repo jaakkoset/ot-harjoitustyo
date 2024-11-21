@@ -1,13 +1,14 @@
 "Class WordTest provides methods for word tests"
 
 from word_repository import WordRepository
+from database_connection import get_database_connection
 
 
 class WordTest:
     """Methods for word tests"""
 
     def __init__(self):
-        self.db = WordRepository()
+        self.db = WordRepository(get_database_connection())
         self.counter = 0
         self.new_word()
 
