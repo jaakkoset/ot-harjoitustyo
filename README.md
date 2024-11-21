@@ -35,3 +35,7 @@ Suorita testit komennolla
 Luo html-muotoinen testikattavuusraportti komennolla
 
     poetry run invoke coverage-report
+
+Suorita Pylint-testi
+
+    poetry run invoke lint
