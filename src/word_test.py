@@ -1,13 +1,19 @@
 "Class WordTest provides methods for word tests"
 from word_repository import WordRepository
+from stats_repository import StatsRepository
 from database_connection import get_database_connection
 
 
 class WordTest:
     """Methods for word tests"""
 
-    def __init__(self, repository=WordRepository(get_database_connection())):
+    def __init__(
+        self,
+        repository=WordRepository(get_database_connection()),
+        stats=StatsRepository(),
+    ):
         self.db = repository
+        self.stats = stats
         self.word = {
             "id": -1,
             "word": None,
@@ -42,5 +48,9 @@ class WordTest:
     def check_answer(self, answer) -> bool:
         """Check the answer given by the user"""
         if answer in self.word["translations"]:
+            self.add_correct_word_test_answer_to_stats()
             return True
         return False
+
+    def add_correct_word_test_answer_to_stats(self):
+        self.stats.add_correct_word_test_answer()

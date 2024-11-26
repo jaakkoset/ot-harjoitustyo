@@ -1,9 +1,11 @@
 from word_test import WordTest
+from stats_repository import StatsRepository
 
 
 COMMANDS = {
     "q": "q lopeta ohjelma",
     "1": "1 tee sanakoe",
+    "2": "2 näytä tilastot",
 }
 
 
@@ -12,6 +14,7 @@ class Ui:
 
     def __init__(self, io):
         self._io = io
+        self.stats = StatsRepository()
 
     def program(self):
         """Program loop"""
@@ -19,11 +22,14 @@ class Ui:
             self._print_commands()
             command = self._io.read("Anna komento: ")
 
+            if command == "q":
+                break
+
             if command == "1":
                 self._word_test()
 
-            if command == "q":
-                break
+            if command == "2":
+                self._stats()
 
     def _print_commands(self):
         """Print all commands for the user"""
@@ -33,7 +39,7 @@ class Ui:
 
     def _word_test(self):
         """Ui for the word test."""
-        test = WordTest()
+        test = WordTest(stats=self.stats)
         self._io.write("\nPoistu kirjoittamalla x")
 
         while True:
@@ -50,3 +56,8 @@ class Ui:
                 test.next_word()
             else:
                 self._io.write("\nVastaus väärin")
+
+    def _stats(self):
+        """Show statistics about the user"""
+        correct_answers = self.stats.get_total_correct_word_test_answers()
+        self._io.write(f"\nOlet vastannut oikein {correct_answers} sanaan")
