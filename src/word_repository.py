@@ -9,15 +9,16 @@ class WordRepository:
 
         self.words = [
             ("0", "puella", ("tyttö",)),
-            ("1", "colōnus", ("maanviljelijä",)),
             (
-                "2",
+                "1",
                 "puer",
                 (
                     "poika",
                     "lapsi",
                 ),
             ),
+            ("2", "bellum", ("sota",)),
+            ("3", "rēx", ("kuningas",)),
         ]
 
         # self.words2 = [

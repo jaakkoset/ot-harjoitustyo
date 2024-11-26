@@ -22,3 +22,21 @@ class TestWordTest(unittest.TestCase):
         """translations returns a tuple"""
         translation = self.test.translations()
         self.assertIsInstance(translation, tuple)
+
+    def test_printable_translations(self):
+        """printable_translations works correctly"""
+        word_test = WordTest(StubWordRepository())
+        should_be = "  poika  lapsi"
+        self.assertEqual(word_test.printable_translations(), should_be)
+
+
+class StubWordRepository:
+    def get_word_and_translations(self, word_id):
+        return {
+            "id": "0",
+            "word": "puer",
+            "translations": (
+                "poika",
+                "lapsi",
+            ),
+        }

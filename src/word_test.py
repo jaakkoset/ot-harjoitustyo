@@ -1,5 +1,4 @@
 "Class WordTest provides methods for word tests"
-
 from word_repository import WordRepository
 from database_connection import get_database_connection
 
@@ -7,8 +6,8 @@ from database_connection import get_database_connection
 class WordTest:
     """Methods for word tests"""
 
-    def __init__(self):
-        self.db = WordRepository(get_database_connection())
+    def __init__(self, repository=WordRepository(get_database_connection())):
+        self.db = repository
         self.word = {
             "id": -1,
             "word": None,
