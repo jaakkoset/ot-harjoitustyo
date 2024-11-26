@@ -7,7 +7,7 @@ COMMANDS = {
 }
 
 
-class Program:
+class Ui:
     """Program loop and its helper methods"""
 
     def __init__(self, io):
