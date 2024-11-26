@@ -8,4 +8,7 @@
 
 ## Viikko 4
 
- - SQLite tietokanta otettu käyttöön
+ - SQLite tietokanta on alustettu ja toimii (mutta ohjelma ei vielä käytä tietokantaa)
+ - Lisätty testi WordTest ja WordRepository -luokille
+ - Luotu luokkakaavio
+ - Käyttäjä voi nähdä tilastoista kuinka monta kertaa hän on vastannut oikein sanakokeessa

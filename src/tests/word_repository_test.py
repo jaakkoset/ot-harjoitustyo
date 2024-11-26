@@ -8,6 +8,8 @@ class TestWordTest(unittest.TestCase):
         self.repository = WordRepository(Mock())
 
     def test_if_id_is_too_big_it_resets(self):
+        """If the id given as an argument to get_word_and_translations is too big, it 
+        resets to zero"""
         too_large_id = self.repository.words_with_translations()
         self.assertNotEqual(too_large_id, 0)
         word = self.repository.get_word_and_translations(too_large_id)
