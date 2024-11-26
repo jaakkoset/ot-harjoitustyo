@@ -14,6 +14,8 @@ Vaatimuksena on Python-versio `3.10`.
 
 * [Työaikakirjanpito](./dokumentaatio/tyoaikakirjanpito.md)
 
+* [Arkkitehtuuri](./dokumentaatio/arkkitehtuuri.md)
+
 * [Changelog](./dokumentaatio/changelog.md)
 
 ## Asennus
