@@ -44,9 +44,9 @@ class Program:
                 break
             check = test.check_answer(answer)
             if check:
-                self._io.write("Vastasit oikein")
+                self._io.write("\nVastasit oikein")
                 self._io.write("Oikeat vastaukset:")
                 self._io.write(test.printable_translations())
-                test.new_word()
+                test.next_word()
             else:
-                self._io.write("Vastaus väärin")
+                self._io.write("\nVastaus väärin")

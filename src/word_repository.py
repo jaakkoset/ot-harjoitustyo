@@ -8,9 +8,16 @@ class WordRepository:
         self._connection = connection
 
         self.words = [
-            ("puella", ("tyttö",)),
-            ("colōnus", ("maanviljelijä",)),
-            ("puer", ("poika", "lapsi",)),
+            ("0", "puella", ("tyttö",)),
+            ("1", "colōnus", ("maanviljelijä",)),
+            (
+                "2",
+                "puer",
+                (
+                    "poika",
+                    "lapsi",
+                ),
+            ),
         ]
 
         # self.words2 = [
@@ -32,15 +39,22 @@ class WordRepository:
         #     ("capiō", ("ottaa")),
         # ]
 
-    def word_and_translations(self, word_id: int) -> dict:
+    def get_word_and_translations(self, word_id: str) -> dict:
         """
         Return a Latin word and its Finnish translations in a tuple.
 
         Args:
             word_id: the id number of the Latin word in the database.
         """
-        word = {"word": self.words[word_id][0],
-                "translations": self.words[word_id][1]}
+        word_id = int(word_id)
+        if word_id >= self.words_with_translations():
+            word_id = 0
+
+        word = {
+            "id": self.words[word_id][0],
+            "word": self.words[word_id][1],
+            "translations": self.words[word_id][2],
+        }
         return word
 
     def words_with_translations(self):

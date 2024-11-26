@@ -9,17 +9,21 @@ class WordTest:
 
     def __init__(self):
         self.db = WordRepository(get_database_connection())
-        self.counter = 0
-        self.new_word()
+        self.word = {
+            "id": -1,
+            "word": None,
+            "translations": None,
+        }
+        self.next_word()
 
-    def new_word(self):
+    def next_word(self):
         """Fetch the next word and its translations from the database and save them"""
-        self.word = self.db.word_and_translations(self.counter)
+        next_id = int(self.word_id()) + 1
+        self.word = self.db.get_word_and_translations(next_id)
 
-        if self.counter < self.db.words_with_translations() - 1:
-            self.counter += 1
-        else:
-            self.counter = 0
+    def word_id(self) -> str:
+        """Return the id number of the word"""
+        return self.word["id"]
 
     def latin_word(self) -> str:
         """Return the Latin word"""
