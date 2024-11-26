@@ -9,7 +9,7 @@ class TestWordTest(unittest.TestCase):
     def test_new_word(self):
         """new_word actually changes the word"""
         old_word = self.test.latin_word()
-        self.test.new_word()
+        self.test.next_word()
         new_word = self.test.latin_word()
         self.assertFalse(old_word == new_word)
 
