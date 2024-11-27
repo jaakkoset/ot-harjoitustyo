@@ -1,5 +1,5 @@
 from word_test import WordTest
-from stats_repository import StatsRepository
+from stats_repository import stats_repository
 
 
 COMMANDS = {
@@ -12,9 +12,9 @@ COMMANDS = {
 class Ui:
     """Program loop and its helper methods"""
 
-    def __init__(self, io):
+    def __init__(self, io, stats_repo=stats_repository):
         self._io = io
-        self.stats = StatsRepository()
+        self.stats = stats_repo
 
     def program(self):
         """Program loop"""
@@ -39,7 +39,7 @@ class Ui:
 
     def _word_test(self):
         """Ui for the word test."""
-        test = WordTest(stats=self.stats)
+        test = WordTest()
         self._io.write("\nPoistu kirjoittamalla x")
 
         while True:

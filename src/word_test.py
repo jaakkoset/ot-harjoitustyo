@@ -1,7 +1,6 @@
 "Class WordTest provides methods for word tests"
-from word_repository import WordRepository
-from stats_repository import StatsRepository
-from database_connection import get_database_connection
+from word_repository import word_repository
+from stats_repository import stats_repository
 
 
 class WordTest:
@@ -9,11 +8,11 @@ class WordTest:
 
     def __init__(
         self,
-        repository=WordRepository(get_database_connection()),
-        stats=StatsRepository(),
+        word_repo=word_repository,
+        stats_repo=stats_repository,
     ):
-        self.db = repository
-        self.stats = stats
+        self.word_repo = word_repo
+        self.stats_repo = stats_repo
         self.word = {
             "id": -1,
             "word": None,
@@ -24,7 +23,7 @@ class WordTest:
     def next_word(self):
         """Fetch the next word and its translations from the database and save them"""
         next_id = int(self.word_id()) + 1
-        self.word = self.db.get_word_and_translations(next_id)
+        self.word = self.word_repo.get_word_and_translations(next_id)
 
     def word_id(self) -> str:
         """Return the id number of the word"""
@@ -53,4 +52,4 @@ class WordTest:
         return False
 
     def add_correct_word_test_answer_to_stats(self):
-        self.stats.add_correct_word_test_answer()
+        self.stats_repo.add_correct_word_test_answer()

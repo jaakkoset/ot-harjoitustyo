@@ -1,5 +1,7 @@
 """Class WordRepository provides methods for database queries involving words"""
 
+from database_connection import get_database_connection
+
 
 class WordRepository:
     """Methods for database queries involving words"""
@@ -62,3 +64,6 @@ class WordRepository:
         """Return the number of latin words that have a translation in the database.
         Only words with translations are suitable for word tests."""
         return len(self.words)
+
+
+word_repository = WordRepository(get_database_connection)
