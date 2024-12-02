@@ -1,6 +1,6 @@
 "Class WordTest provides methods for word tests"
-from word_repository import word_repository
-from stats_repository import stats_repository
+from repository.word_repository import word_repository
+from repository.stats_repository import stats_repository
 
 
 class WordTest:

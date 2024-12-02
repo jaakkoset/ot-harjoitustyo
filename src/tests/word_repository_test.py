@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock
-from word_repository import WordRepository
+from repository.word_repository import WordRepository
 
 
 class TestWordTest(unittest.TestCase):

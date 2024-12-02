@@ -1,11 +1,13 @@
-from word_test import WordTest
-from stats_repository import stats_repository
+from exercises.word_test import WordTest
+from repository.stats_repository import stats_repository
 
 
 COMMANDS = {
     "q": "q lopeta ohjelma",
-    "1": "1 tee sanakoe",
-    "2": "2 näytä tilastot",
+    "1": "1 tee tehtävä",
+    "2": "2 luo uusi tehtävä",
+    "3": "3 poista tehtävä",
+    "4": "4 näytä tilastot",
 }
 
 
@@ -28,7 +30,7 @@ class Ui:
             if command == "1":
                 self._word_test()
 
-            if command == "2":
+            if command == "4":
                 self._stats()
 
     def _print_commands(self):
