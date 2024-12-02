@@ -10,17 +10,17 @@ class WordRepository:
         self._connection = connection
 
         self.words = [
-            ("0", "puella", ("tyttö",)),
-            (
-                "1",
-                "puer",
-                (
+            {"id": "0", "latin": "puella", "translations": ("tyttö",)},
+            {
+                "id": "1",
+                "latin": "puer",
+                "translations": (
                     "poika",
                     "lapsi",
                 ),
-            ),
-            ("2", "bellum", ("sota",)),
-            ("3", "rēx", ("kuningas",)),
+            },
+            {"id": "2", "latin": "bellum", "translations": ("sota",)},
+            {"id": "3", "latin": "rēx", "translations": ("kuningas",)},
         ]
 
         # self.words2 = [
@@ -42,23 +42,16 @@ class WordRepository:
         #     ("capiō", ("ottaa")),
         # ]
 
-    def get_word_and_translations(self, word_id: str) -> dict:
+    def get_word_test_words(self, word_test_id: str) -> list[dict]:
         """
-        Return a Latin word and its Finnish translations in a tuple.
+        Return the Latin words and their Finnish translations in dictionaries in a list.
 
         Args:
-            word_id: the id number of the Latin word in the database.
+            word_test_id: the id number of the word test in the database.
         """
-        word_id = int(word_id)
-        if word_id >= self.words_with_translations():
-            word_id = 0
+        word_test_id = int(word_test_id)
 
-        word = {
-            "id": self.words[word_id][0],
-            "word": self.words[word_id][1],
-            "translations": self.words[word_id][2],
-        }
-        return word
+        return self.words
 
     def words_with_translations(self):
         """Return the number of latin words that have a translation in the database.

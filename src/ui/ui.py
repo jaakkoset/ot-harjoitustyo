@@ -4,9 +4,9 @@ from repository.stats_repository import stats_repository
 
 COMMANDS = {
     "q": "q lopeta ohjelma",
-    "1": "1 tee tehtävä",
-    "2": "2 luo uusi tehtävä",
-    "3": "3 poista tehtävä",
+    "1": "1 sanakoe",
+    "2": "2 tunnista sanan taivutusmuoto",
+    "3": "3 tunnista lauserakenne",
     "4": "4 näytä tilastot",
 }
 
@@ -41,7 +41,8 @@ class Ui:
 
     def _word_test(self):
         """Ui for the word test."""
-        test = WordTest()
+        word_test_id = 1
+        test = WordTest(word_test_id)
         self._io.write("\nPoistu kirjoittamalla x")
 
         while True:
@@ -50,12 +51,15 @@ class Ui:
             answer = self._io.read()
             if answer == "x":
                 break
-            check = test.check_answer(answer)
-            if check:
+            answer_is_correct = test.check_answer(answer)
+            if answer_is_correct:
                 self._io.write("\nVastasit oikein")
                 self._io.write("Oikeat vastaukset:")
                 self._io.write(test.printable_translations())
-                test.next_word()
+                if not test.change_to_next_word():
+                    self._io.write("\nKoe valmis")
+                    break
+
             else:
                 self._io.write("\nVastaus väärin")
 
