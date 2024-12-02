@@ -7,9 +7,13 @@ def drop_tables(connection):
     """Delete all tables in the database if they exist"""
     cursor = connection.cursor()
 
-    cursor.execute("""DROP TABLE IF EXISTS Words;""")
+    cursor.execute("""DROP TABLE IF EXISTS Exercises;""")
 
-    cursor.execute("""DROP TABLE IF EXISTS Translations;""")
+    cursor.execute("""DROP TABLE IF EXISTS Questions;""")
+
+    cursor.execute("""DROP TABLE IF EXISTS Answers;""")
+
+    cursor.execute("""DROP TABLE IF EXISTS Stats;""")
 
     connection.commit()
 
@@ -20,22 +24,44 @@ def create_tables(connection):
 
     cursor.execute(
         """
-        CREATE TABLE Words
+        CREATE TABLE Exercises
         (
             id INTEGER PRIMARY KEY,
-            word TEXT,
-            inflection TEXT
+            name TEXT,
+            guide TEXT
         );
     """
     )
 
     cursor.execute(
         """
-        CREATE TABLE Translations
+        CREATE TABLE Questions
         (
             id INTEGER PRIMARY KEY,
-            word_id INTEGER REFERENCES Word,
-            translation TEXT
+            exercise_id INTEGER REFERENCES Exercise,
+            question TEXT
+        );
+    """
+    )
+
+    cursor.execute(
+        """
+        CREATE TABLE Answers
+        (
+            id INTEGER PRIMARY KEY,
+            question_id INTEGER REFERENCES Exercise,
+            answer TEXT
+        );
+    """
+    )
+
+    cursor.execute(
+        """
+        CREATE TABLE Stats
+        (
+            id INTEGER PRIMARY KEY,
+            correct_answers INTEGER,
+            tests_completed INTEGER
         );
     """
     )
@@ -43,58 +69,70 @@ def create_tables(connection):
     connection.commit()
 
 
-def add_test_data(connection):
+def add_word_test_1(connection):
     """Add data to the database"""
     words = [
-        ("puella", ("tyttö",)),
-        ("colōnus", ("maanviljelijä",)),
-        (
-            "puer",
-            (
+        {"latin": "puella", "translations": ("tyttö",)},
+        {
+            "latin": "puer",
+            "translations": (
                 "poika",
                 "lapsi",
             ),
-        ),
+        },
+        {"latin": "bellum", "translations": ("sota",)},
+        {"latin": "rēx", "translations": ("kuningas",)},
     ]
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+            INSERT INTO Exercises
+                (name, guide)
+            VALUES
+                ("Helppo Sanakoe", "Suomenna annetut sanat");
+            """
+    )
+    exercise_id = cursor.lastrowid
 
     for word in words:
-        cursor = connection.cursor()
 
         cursor.execute(
             """
-            INSERT INTO 
-            Words
-                (word, inflection)
+            INSERT INTO Questions
+                (exercise_id, question)
             VALUES
                 (?, ?);
             """,
-            (word[0], "lemma"),
+            (exercise_id, word["latin"]),
         )
 
-        last_id = cursor.lastrowid
+        question_id = cursor.lastrowid
 
-        for translation in word[1]:
+        for answer in word["translations"]:
             cursor.execute(
                 """
-                INSERT INTO 
-                Translations
-                    (word_id, translation)
+                INSERT INTO Answers
+                    (question_id, answer)
                 VALUES
                     (?, ?);
                 """,
-                (last_id, translation),
+                (question_id, answer),
             )
 
-        connection.commit()
+    connection.commit()
 
 
 def initialize_database():
     """Delete all tables if they exist and recreate them"""
     connection = get_database_connection()
 
+    print("Drop tables")
     drop_tables(connection)
+    print("Create tables")
     create_tables(connection)
-    add_test_data(connection)
+    print("Add word test 1")
+    add_word_test_1(connection)
 
 
 if __name__ == "__main__":
