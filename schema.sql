@@ -2,30 +2,30 @@
 
 
 -- guide is a general guide for the exercise that is shown before the exercise begins
-CREATE TABLE Exercise
+CREATE TABLE Exercises
 (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     name TEXT,
     guide TEXT
 );
 
-CREATE TABLE Question
+CREATE TABLE Questions
 (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     exercise_id INTEGER REFERENCES Exercise,
     question TEXT
 );
 
-CREATE TABLE Answer
+CREATE TABLE Answers
 (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     question_id INTEGER REFERENCES Exercise,
     answer TEXT
 );
 
 CREATE TABLE Stats
 (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     correct_answers INTEGER,
-    tests_completed INTEGER,
+    tests_completed INTEGER
 );
