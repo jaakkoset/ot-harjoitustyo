@@ -1,5 +1,5 @@
 import unittest
-from repository.word_repository import exercise_repository
+from repository.exercise_repository import exercise_repository
 
 
 class TestExerciseRepository(unittest.TestCase):

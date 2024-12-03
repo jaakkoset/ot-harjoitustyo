@@ -1,5 +1,5 @@
 import unittest
-from exercises.word_test import Exercise
+from exercises.exercise import Exercise
 
 
 class TestExercise(unittest.TestCase):

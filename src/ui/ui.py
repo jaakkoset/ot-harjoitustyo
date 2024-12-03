@@ -1,5 +1,5 @@
 import sys
-from exercises.word_test import Exercise
+from exercises.exercise import Exercise
 from repository.stats_repository import stats_repository
 
 
