@@ -1,6 +1,7 @@
 import sys
 from exercises.exercise import Exercise
 from repository.stats_repository import stats_repository
+from repository.exercise_repository import exercise_repository
 
 
 COMMANDS = {
@@ -53,7 +54,7 @@ class WordTest:
         self.io = io
 
     def run(self):
-        word_test_id = 1
+        word_test_id = self.choose_word_test()
         test = Exercise(word_test_id)
         self.io.write("\nPoistu kirjoittamalla x")
 
@@ -75,6 +76,20 @@ class WordTest:
 
             else:
                 self.io.write("\nVastaus väärin, yritä uudelleen.")
+
+    def choose_word_test(self):
+        word_tests = exercise_repository.get_all_word_tests()
+        while True:
+            self.print_all_word_tests(word_tests)
+            test_id = self.io.read("\nAnna testin numero: ")
+            for test in word_tests:
+                if str(test["id"]) == test_id:
+                    return test_id
+
+    def print_all_word_tests(self, word_tests):
+        self.io.write("\nValitse testi")
+        for test in word_tests:
+            self.io.write(f"  {test['id']} {test['name']}")
 
 
 class Stats:
