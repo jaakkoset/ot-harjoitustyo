@@ -72,55 +72,19 @@ def create_tables(connection):
 def add_word_test_1(connection):
     """Add data to the database"""
     words = [
-        {"latin": "puella", "translations": ("tyttö",)},
+        {"question": "puella", "answers": ("tyttö",)},
         {
-            "latin": "puer",
-            "translations": (
+            "question": "puer",
+            "answers": (
                 "poika",
                 "lapsi",
             ),
         },
-        {"latin": "bellum", "translations": ("sota",)},
-        {"latin": "rēx", "translations": ("kuningas",)},
+        {"question": "bellum", "answers": ("sota",)},
+        {"question": "rēx", "answers": ("kuningas",)},
     ]
-    cursor = connection.cursor()
-
-    cursor.execute(
-        """
-            INSERT INTO Exercises
-                (name, guide)
-            VALUES
-                ("Helppo Sanakoe", "Suomenna annetut sanat");
-            """
-    )
-    exercise_id = cursor.lastrowid
-
-    for word in words:
-
-        cursor.execute(
-            """
-            INSERT INTO Questions
-                (exercise_id, question)
-            VALUES
-                (?, ?);
-            """,
-            (exercise_id, word["latin"]),
-        )
-
-        question_id = cursor.lastrowid
-
-        for answer in word["translations"]:
-            cursor.execute(
-                """
-                INSERT INTO Answers
-                    (question_id, answer)
-                VALUES
-                    (?, ?);
-                """,
-                (question_id, answer),
-            )
-
-    connection.commit()
+    info = {"name": "Helppo sanakoe", "guide": "Suomenna annetut sanat"}
+    insert_exercise_data(connection, words, info)
 
 
 def add_word_test_2(connection):
@@ -130,7 +94,13 @@ def add_word_test_2(connection):
         {"question": "nāvis", "answers": ("laiva",)},
         {"question": "mare", "answers": ("meri",)},
         {"question": "bonus", "answers": ("hyvä",)},
-        {"question": "parō", "answers": ("valmistaa", "valmistautua",)},
+        {
+            "question": "parō",
+            "answers": (
+                "valmistaa",
+                "valmistautua",
+            ),
+        },
         {"question": "audiō", "answers": ("kuulla",)},
     ]
     info = {"name": "Vaikea sanakoe", "guide": "Suomenna annetut sanat"}
