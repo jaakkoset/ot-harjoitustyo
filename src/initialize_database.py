@@ -106,7 +106,7 @@ def add_word_test_1(connection):
             """,
             (exercise_id, word["latin"]),
         )
-
+        #print("INSERT INTO Questions", word["latin"])
         question_id = cursor.lastrowid
 
         for answer in word["translations"]:
@@ -119,6 +119,7 @@ def add_word_test_1(connection):
                 """,
                 (question_id, answer),
             )
+            #print("INSERT INTO Answers", answer)
 
     connection.commit()
 
