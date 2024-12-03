@@ -17,6 +17,11 @@ def coverage_report(ctx):
     ctx.run("coverage html", pty=True)
 
 @task
+def coverage_terminal(ctx):
+    ctx.run("coverage run --branch -m pytest src", pty=True)
+    ctx.run("coverage report -m", pty=True)
+
+@task
 def lint(ctx):
     ctx.run("pylint src", pty=True)
 
