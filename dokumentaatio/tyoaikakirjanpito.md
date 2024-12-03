@@ -10,4 +10,4 @@
 | 29.11.| 1    | Tutustuin esimerkkiohjelman rakenteeseen ja suunnittelin oman ohjelman rakennetta.
 |  2.12.| 4    | Refaktoroin koodia. Muutin ohjelman pakkausrakennetta. Suunnittelin tietokantaa ja muokkasin sen rakennetta.
 |  3.12.| 7    | Otin tietokannan käyttöön. Lisäsin toisen sanakokeen. Lisäsin käyttäjälle mahdollisuuden valita sanakoe. Tutuistuin command-suunnittelumalliin ja muutin käyttöliittymää sen mukaiseksi. Tein sekvenssikaavion.
-|**Yhteensä**|**28**|
+|**Yhteensä**|**29**|
