@@ -18,10 +18,10 @@ class TestWordTest(unittest.TestCase):
         latin_word = self.test.latin_word()
         self.assertIsInstance(latin_word, str)
 
-    def test_translations(self):
-        """translations returns a tuple"""
+    def test_answers(self):
+        """Answers returns a list"""
         translation = self.test.translations()
-        self.assertIsInstance(translation, tuple)
+        self.assertIsInstance(translation, list)
 
     def test_printable_translations(self):
         """printable_translations works correctly"""
@@ -33,19 +33,11 @@ class TestWordTest(unittest.TestCase):
 
 class StubWordRepository:
     def __init__(self):
-        self.words = [
-            {"id": "0", "latin": "puella", "translations": ("tyttö",)},
-            {
-                "id": "1",
-                "latin": "puer",
-                "translations": (
-                    "poika",
-                    "lapsi",
-                ),
-            },
-            {"id": "2", "latin": "bellum", "translations": ("sota",)},
-            {"id": "3", "latin": "rēx", "translations": ("kuningas",)},
+        self.all_exercise_questions = [
+            {"id": "-1", "exercise_id": "-1", "question": "puella", "answers": ("tyttö",)},
+            {"id": "-2", "exercise_id": "-1", "question": "puer", "answers": ("poika", "lapsi")},
         ]
+        self.exercise = None
 
     def get_word_test_words(self, word_id):
-        return self.words
+        return self.exercise, self.all_exercise_questions
