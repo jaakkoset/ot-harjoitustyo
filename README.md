@@ -24,6 +24,10 @@ Asenna riippuvuudet komennolla
 
     poetry install
 
+Asenna tietokanta komennolla
+
+    poetry run invoke init-db
+
 Käynnistä ohjelma komennolla 
 
     poetry run invoke start
