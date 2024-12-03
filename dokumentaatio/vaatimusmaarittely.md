@@ -10,11 +10,11 @@ Sovelluksella on vain yksi käyttäjä.
 
 ## Suunnitellut toiminnallisuudet
 
- - Käyttäjä voi tehdä sanatestejä, joissa hänen pitää antaa sanasta oikea käännös.
+ - (Tehty) Käyttäjä voi tehdä sanatestejä, joissa hänen pitää antaa sanasta oikea käännös.
  
  - Käyttäjä voi tehdä harjoituksia, joissa hänen pitää tunnistaa sanojen taivutusmuotoja.
  
  - Käyttäjä voi tehdä harjoituksia, joissa hänen pitää tunnistaa lauserakenteita esimerkkilauseista.
  
- - Käyttäjä voi nähdä tilastoista kuinka moneen tehtävään hän on vastannut.
+ - (Tehty) Käyttäjä voi nähdä tilastoista kuinka moneen tehtävään hän on vastannut.
 

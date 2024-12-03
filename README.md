@@ -2,7 +2,7 @@
 
 [![GHA workflow badge](https://github.com/jaakkoset/ohtuvarasto/workflows/CI/badge.svg)](https://github.com/jaakkoset/ohtuvarasto/actions)
 
-Teen **kielenharjoittelusovelluksen**, jossa käyttäjä *ratkoo kieleen liittyviä tehtäviä*.
+Käyttäjä voi tehdä sovelluksella latinan kieleen liittyiä harjoituksia. Ohjelmassa on tällä hetkellä kaksi sanakoetta. Käyttäjä voi nähdä tilastoista kuinka monta sanaa hän on kääntänyt oikein.
 
 ## Huomio Python-versiosta
 

@@ -12,3 +12,10 @@
  - Lisätty testi WordTest ja WordRepository -luokille
  - Luotu luokkakaavio
  - Käyttäjä voi nähdä tilastoista kuinka monta kertaa hän on vastannut oikein sanakokeessa
+
+## Viikko 5
+
+ - Ohjelman pakkausrakenne on muutettu
+ - Ui on tehty uudelleen ja jaettu moneen luokkaan
+ - Ohjelma käyttää SQLite tietokantaa tehtävien tallentamiseen
+ - Ohjelmaan on lisätty toinen sanakoe ja käyttäjä voi valita kumman niistä tekee
