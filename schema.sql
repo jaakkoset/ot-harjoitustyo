@@ -1,12 +1,14 @@
 /* A sketch for the database */
 
 
--- guide is a general guide for the exercise that is shown before the exercise begins
+-- guide is a general guide for the exercise that is shown before the exercise begins.
+-- type is the type of the exercise, e.g. a word test.
 CREATE TABLE Exercises
 (
     id INTEGER PRIMARY KEY,
     name TEXT,
-    guide TEXT
+    guide TEXT,
+    type TEXT
 );
 
 CREATE TABLE Questions

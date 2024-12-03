@@ -28,7 +28,8 @@ def create_tables(connection):
         (
             id INTEGER PRIMARY KEY,
             name TEXT,
-            guide TEXT
+            guide TEXT,
+            type TEXT
         );
     """
     )
@@ -83,7 +84,11 @@ def add_word_test_1(connection):
         {"question": "bellum", "answers": ("sota",)},
         {"question": "rēx", "answers": ("kuningas",)},
     ]
-    info = {"name": "Helppo sanakoe", "guide": "Suomenna annetut sanat"}
+    info = {
+        "name": "Helppo sanakoe",
+        "guide": "Suomenna annetut sanat",
+        "type": "word test",
+    }
     insert_exercise_data(connection, words, info)
 
 
@@ -103,7 +108,11 @@ def add_word_test_2(connection):
         },
         {"question": "audiō", "answers": ("kuulla",)},
     ]
-    info = {"name": "Vaikea sanakoe", "guide": "Suomenna annetut sanat"}
+    info = {
+        "name": "Vaikea sanakoe",
+        "guide": "Suomenna annetut sanat",
+        "type": "word test",
+    }
     insert_exercise_data(connection, words, info)
 
 
@@ -113,11 +122,11 @@ def insert_exercise_data(connection, questions: list[dict], info: dict):
     cursor.execute(
         """
             INSERT INTO Exercises
-                (name, guide)
+                (name, guide, type)
             VALUES
-                (?, ?);
+                (?, ?, ?);
             """,
-        (info["name"], info["guide"]),
+        (info["name"], info["guide"], info["type"]),
     )
     exercise_id = cursor.lastrowid
 
