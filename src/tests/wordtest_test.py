@@ -1,10 +1,10 @@
 import unittest
-from exercises.word_test import WordTest
+from exercises.word_test import Exercise
 
 
-class TestWordTest(unittest.TestCase):
+class TestExercise(unittest.TestCase):
     def setUp(self):
-        self.test = WordTest(1)
+        self.test = Exercise(1)
 
     def test_new_word(self):
         """new_word actually changes the word"""
@@ -20,18 +20,18 @@ class TestWordTest(unittest.TestCase):
 
     def test_answers(self):
         """Answers returns a list"""
-        translation = self.test.translations()
+        translation = self.test.answers()
         self.assertIsInstance(translation, list)
 
-    def test_printable_translations(self):
+    def test_printable_answers(self):
         """printable_translations works correctly"""
-        word_test = WordTest(1, word_repo=StubWordRepository())
+        word_test = Exercise(1, exercise_repo=StubExerciseRepository())
         word_test.change_to_next_word()
         should_be = "  poika  lapsi"
-        self.assertEqual(word_test.printable_translations(), should_be)
+        self.assertEqual(word_test.printable_answers(), should_be)
 
 
-class StubWordRepository:
+class StubExerciseRepository:
     def __init__(self):
         self.all_exercise_questions = [
             {"id": "-1", "exercise_id": "-1", "question": "puella", "answers": ("tyttö",)},
@@ -39,5 +39,5 @@ class StubWordRepository:
         ]
         self.exercise = None
 
-    def get_word_test_words(self, word_id):
+    def get_exercise_data(self, word_id):
         return self.exercise, self.all_exercise_questions

@@ -1,5 +1,5 @@
 import sys
-from exercises.word_test import WordTest as WT
+from exercises.word_test import Exercise
 from repository.stats_repository import stats_repository
 
 
@@ -54,7 +54,7 @@ class WordTest:
 
     def run(self):
         word_test_id = 1
-        test = WT(word_test_id)
+        test = Exercise(word_test_id)
         self.io.write("\nPoistu kirjoittamalla x")
 
         while True:
@@ -68,7 +68,7 @@ class WordTest:
             if answer_is_correct:
                 self.io.write("\nVastasit oikein")
                 self.io.write("Oikeat vastaukset:")
-                self.io.write(test.printable_translations())
+                self.io.write(test.printable_answers())
                 if not test.change_to_next_word():
                     self.io.write("\nKoe valmis")
                     break

@@ -1,12 +1,12 @@
 import unittest
-from repository.word_repository import word_repository
+from repository.word_repository import exercise_repository
 
 
-class TestWordTest(unittest.TestCase):
+class TestExerciseRepository(unittest.TestCase):
     def setUp(self):
-        self.repository = word_repository
+        self.repository = exercise_repository
 
-    def test_get_word_test_words(self):
+    def test_get_get_exercise_data(self):
         """get_word_test_words returns a tuple"""
-        words = self.repository.get_word_test_words(1)
+        words = self.repository.get_exercise_data(1)
         self.assertIsInstance(words, tuple)

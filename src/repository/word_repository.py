@@ -3,18 +3,18 @@
 from database_connection import get_database_connection
 
 
-class WordRepository:
+class ExerciseRepository:
     """Methods for database queries involving words"""
 
     def __init__(self, connection):
         self._connection = connection
 
-    def get_word_test_words(self, word_test_id: str) -> tuple[dict, list[dict]]:
+    def get_exercise_data(self, exercise_id: str) -> tuple[dict, list[dict]]:
         """
         Return the exercise info, questions and correct answers.
 
         Args:
-            word_test_id: the id number of the word test in the database.
+            exercise_id: the id number of the exrcise.
 
         Returns:
             tuple: (exercise, all_exercise_questions) where exercise is a dictionary
@@ -22,7 +22,7 @@ class WordRepository:
             and all_exercise_questions is a list containing dictionaries in the form of
             {"id": (str), "exercise_id": (str), "question": (str), "answers": (tuple)}
         """
-        word_test_id = int(word_test_id)
+        exercise_id = int(exercise_id)
         cursor = self._connection.cursor()
 
         cursor.execute(
@@ -31,7 +31,7 @@ class WordRepository:
             FROM Exercises
             WHERE id=?;
         """,
-            (word_test_id,),
+            (exercise_id,),
         )
         exercise = cursor.fetchone()
         exercise = {"id": exercise[0], "name": exercise[1], "guide": exercise[2]}
@@ -70,4 +70,4 @@ class WordRepository:
         return exercise, all_exercise_questions
 
 
-word_repository = WordRepository(get_database_connection())
+exercise_repository = ExerciseRepository(get_database_connection())
