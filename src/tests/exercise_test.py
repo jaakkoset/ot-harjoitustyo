@@ -7,15 +7,15 @@ class TestExercise(unittest.TestCase):
         self.test = Exercise(1)
 
     def test_new_word(self):
-        """new_word actually changes the word"""
-        old_word = self.test.latin_word()
+        """change_to_next_word actually changes the word"""
+        old_word = self.test.question()
         self.test.change_to_next_word()
-        new_word = self.test.latin_word()
+        new_word = self.test.question()
         self.assertFalse(old_word == new_word)
 
-    def test_latin_word(self):
-        """latin_word returns a string"""
-        latin_word = self.test.latin_word()
+    def test_question(self):
+        """question returns a string"""
+        latin_word = self.test.question()
         self.assertIsInstance(latin_word, str)
 
     def test_answers(self):

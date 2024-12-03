@@ -33,8 +33,8 @@ class Exercise:
             return False
         return True
 
-    def latin_word(self) -> str:
-        """Return the Latin word"""
+    def question(self) -> str:
+        """Return the current question"""
         return self.questions[self.question_index]["question"]
 
     def answers(self) -> tuple:

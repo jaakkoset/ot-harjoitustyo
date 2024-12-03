@@ -59,8 +59,8 @@ class WordTest:
         self.io.write("\nPoistu kirjoittamalla x")
 
         while True:
-            latin_word = test.latin_word()
-            self.io.write("\nSuomenna sana: " + latin_word)
+            question = test.question()
+            self.io.write("\nSuomenna sana: " + question)
             answer = self.io.read()
             if answer == "x":
                 self.io.write("\nLopetit kokeen")
