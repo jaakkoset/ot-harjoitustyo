@@ -69,5 +69,34 @@ class ExerciseRepository:
 
         return exercise, all_exercise_questions
 
+    def get_all_word_tests(self) -> list:
+        """Return all word tests"""
+        return self.get_all_exercises("word test")
+
+    def get_all_exercises(self, exercise_type: str) -> list:
+        """Return all exercises of the give type"""
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT id, name, guide, type 
+            FROM Exercises
+            WHERE type=?;
+        """,
+            (exercise_type,),
+        )
+
+        word_tests = []
+        for row in cursor:
+            test = {}
+            test["id"] = row["id"]
+            test["name"] = row["name"]
+            test["guide"] = row["guide"]
+            test["type"] = row["type"]
+
+            word_tests.append(test)
+
+        return word_tests
+
 
 exercise_repository = ExerciseRepository(get_database_connection())
