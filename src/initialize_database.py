@@ -106,7 +106,7 @@ def add_word_test_1(connection):
             """,
             (exercise_id, word["latin"]),
         )
-        #print("INSERT INTO Questions", word["latin"])
+
         question_id = cursor.lastrowid
 
         for answer in word["translations"]:
@@ -119,7 +119,62 @@ def add_word_test_1(connection):
                 """,
                 (question_id, answer),
             )
-            #print("INSERT INTO Answers", answer)
+
+    connection.commit()
+
+
+def add_word_test_2(connection):
+    """Add data to the database"""
+    words = [
+        {"question": "lītus", "answers": ("ranta",)},
+        {"question": "nāvis", "answers": ("laiva",)},
+        {"question": "mare", "answers": ("meri",)},
+        {"question": "bonus", "answers": ("hyvä",)},
+        {"question": "parō", "answers": ("valmistaa", "valmistautua",)},
+        {"question": "audiō", "answers": ("kuulla",)},
+    ]
+    info = {"name": "Vaikea sanakoe", "guide": "Suomenna annetut sanat"}
+    insert_exercise_data(connection, words, info)
+
+
+def insert_exercise_data(connection, questions: list[dict], info: dict):
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+            INSERT INTO Exercises
+                (name, guide)
+            VALUES
+                (?, ?);
+            """,
+        (info["name"], info["guide"]),
+    )
+    exercise_id = cursor.lastrowid
+
+    for question in questions:
+
+        cursor.execute(
+            """
+            INSERT INTO Questions
+                (exercise_id, question)
+            VALUES
+                (?, ?);
+            """,
+            (exercise_id, question["question"]),
+        )
+
+        question_id = cursor.lastrowid
+
+        for answer in question["answers"]:
+            cursor.execute(
+                """
+                INSERT INTO Answers
+                    (question_id, answer)
+                VALUES
+                    (?, ?);
+                """,
+                (question_id, answer),
+            )
 
     connection.commit()
 
@@ -134,6 +189,8 @@ def initialize_database():
     create_tables(connection)
     print("Add word test 1")
     add_word_test_1(connection)
+    print("Add word test 2")
+    add_word_test_2(connection)
 
 
 if __name__ == "__main__":
