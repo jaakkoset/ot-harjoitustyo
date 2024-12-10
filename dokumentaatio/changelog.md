@@ -19,3 +19,8 @@
  - Ui on tehty uudelleen ja jaettu moneen luokkaan
  - Ohjelma käyttää SQLite tietokantaa tehtävien tallentamiseen
  - Ohjelmaan on lisätty toinen sanakoe ja käyttäjä voi valita kumman niistä tekee
+
+## Viikko 6
+
+ - Lisätty services-kansio, jossa on ohjelmalogiikkaa
+ - Lisätty käyttöohje
