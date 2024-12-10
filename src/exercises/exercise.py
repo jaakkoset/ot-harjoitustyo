@@ -25,7 +25,8 @@ class Exercise:
         self.exercise_repo = exercise_repo
         self.stats_repo = stats_repo
 
-        self.exercise, self.questions = self.exercise_repo.get_exercise_data(exercise_id)
+        self.exercise = self.exercise_repo.get_exercise_info(exercise_id)
+        self.questions = self.exercise_repo.get_exercise_questions(exercise_id)
         self.number_of_question = len(self.questions)
         self.question_index = 0
 

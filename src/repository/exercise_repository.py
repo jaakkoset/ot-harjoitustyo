@@ -13,32 +13,18 @@ class ExerciseRepository:
     def __init__(self, connection):
         self._connection = connection
 
-    def get_exercise_data(self, exercise_id: str) -> tuple[dict, list]:
-        """
-        Return the exercise info, questions and correct answers.
+    def get_exercise_questions(self, exercise_id: str) -> list:
+        """Return a list of all questions and answers of the question.
 
         Args:
-            exercise_id: the id number of the exrcise.
+            exercise_id: the id number of the exercise.
 
         Returns:
-            A tuple (exercise, all_exercise_questions) where exercise is a dictionary in
-            the form of {"id": (str), "name": (str), "guide": (str)}
-            and all_exercise_questions is a list containing dictionaries in the form of
-            {"id": (str), "exercise_id": (str), "question": (str), "answers": (tuple)}
+            A list containing dictionaries in the form of
+            {"id": (str), "exercise_id": (str), "question": (str), "answers": (tuple)}.
         """
         exercise_id = int(exercise_id)
         cursor = self._connection.cursor()
-
-        cursor.execute(
-            """
-            SELECT id, name, guide 
-            FROM Exercises
-            WHERE id=?;
-        """,
-            (exercise_id,),
-        )
-        exercise = cursor.fetchone()
-        exercise = {"id": exercise[0], "name": exercise[1], "guide": exercise[2]}
 
         cursor.execute(
             """
@@ -46,11 +32,11 @@ class ExerciseRepository:
             FROM Questions
             WHERE exercise_id=?;
         """,
-            (exercise["id"],),
+            (exercise_id,),
         )
         questions = cursor.fetchall()
 
-        all_exercise_questions = []
+        exercise_questions = []
         for row in questions:
             question = {}
             question["id"] = row["id"]
@@ -69,9 +55,34 @@ class ExerciseRepository:
             answer_list = [answer["answer"] for answer in cursor]
 
             question["answers"] = answer_list
-            all_exercise_questions.append(question)
+            exercise_questions.append(question)
 
-        return exercise, all_exercise_questions
+        return exercise_questions
+
+    def get_exercise_info(self, exercise_id: str) -> dict:
+        """Get the general information of the exercise.
+
+        Args:
+            exercise_id: the id number of the exercise.
+
+        Returns:
+            A dictionary contaning the id, name and guide of the exercise.
+        """
+        exercise_id = int(exercise_id)
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT id, name, guide 
+            FROM Exercises
+            WHERE id=?;
+        """,
+            (exercise_id,),
+        )
+        exercise = cursor.fetchone()
+        exercise = {"id": exercise[0], "name": exercise[1], "guide": exercise[2]}
+
+        return exercise
 
     def get_all_word_tests(self) -> list:
         """Return a list of all word tests. For each word test the list containes a

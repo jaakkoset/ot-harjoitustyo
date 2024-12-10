@@ -36,15 +36,15 @@ class CommandHandler:
     def __init__(self, io):
         self.io = io
 
-        self.COMMANDS = {
+        self.commands = {
             "q": Quit(self.io),
             "1": WordTest(self.io),
             "4": Stats(self.io),
         }
 
     def get(self, command):
-        if command in self.COMMANDS:
-            return self.COMMANDS[command]
+        if command in self.commands:
+            return self.commands[command]
 
         return InvalidCommand(self.io)
 
@@ -57,7 +57,7 @@ class WordTest:
     def run(self):
         word_test_id = self.choose_word_test()
         test = Exercise(word_test_id)
-        self.io.write("\nPoistu kirjoittamalla x")
+        self.io.write("\nVoit poistua kokeesta missä vaiheessa tahansa kirjoittamalla x")
 
         while True:
             question = test.question()
