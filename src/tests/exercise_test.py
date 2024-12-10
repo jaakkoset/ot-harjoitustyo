@@ -34,10 +34,19 @@ class TestExercise(unittest.TestCase):
 class StubExerciseRepository:
     def __init__(self):
         self.all_exercise_questions = [
-            {"id": "-1", "exercise_id": "-1", "question": "puella", "answers": ("tyttö",)},
-            {"id": "-2", "exercise_id": "-1", "question": "puer", "answers": ("poika", "lapsi")},
+            {
+                "id": "-1",
+                "exercise_id": "-1",
+                "question": "puella",
+                "answers": ("tyttö",),
+            },
+            {
+                "id": "-2",
+                "exercise_id": "-1",
+                "question": "puer",
+                "answers": ("poika", "lapsi"),
+            },
         ]
-        self.exercise = None
 
-    def get_exercise_data(self, word_id):
-        return self.exercise, self.all_exercise_questions
+    def get_exercise_questions(self, word_id):
+        return self.all_exercise_questions

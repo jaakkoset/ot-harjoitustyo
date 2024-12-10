@@ -4,7 +4,7 @@ from repository.stats_repository import stats_repository
 
 class Exercise:
     """Methods for handling questions and checking answers.
-    
+
     Attributes:
         exercise_id: id number of the exercise.
         exercise_repo: the repository where exercises are saved.
@@ -13,7 +13,7 @@ class Exercise:
         questions: a list of all questions.
         number_of_question: the number of questions.
         question_index: an integer count of the questions that have been answered.
-        """
+    """
 
     def __init__(
         self,
@@ -25,7 +25,7 @@ class Exercise:
         self.exercise_repo = exercise_repo
         self.stats_repo = stats_repo
 
-        self.exercise = self.exercise_repo.get_exercise_info(exercise_id)
+        # self.exercise = self.exercise_repo.get_exercise_info(exercise_id)
         self.questions = self.exercise_repo.get_exercise_questions(exercise_id)
         self.number_of_question = len(self.questions)
         self.question_index = 0
