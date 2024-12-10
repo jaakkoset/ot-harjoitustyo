@@ -75,7 +75,7 @@ class WordTest:
                 self.io.write("Oikeat vastaukset:")
                 self.io.write(test.printable_answers())
                 WordTestService().add_correct_word_test_answer_to_stats()
-                if not test.change_to_next_word():
+                if not test.change_to_next_question():
                     WordTestService().add_completed_word_test_to_stats()
                     self.io.write("\nKoe valmis")
                     break

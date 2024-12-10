@@ -24,7 +24,7 @@ class Exercise:
         self.number_of_question = len(self.questions)
         self.question_index = 0
 
-    def change_to_next_word(self) -> bool:
+    def change_to_next_question(self) -> bool:
         """Change the current word. Return True if word is changed and False if there
         are no words left."""
         self.question_index += 1

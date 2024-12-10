@@ -6,10 +6,10 @@ class TestExercise(unittest.TestCase):
     def setUp(self):
         self.test = Exercise(1, StubExerciseRepository())
 
-    def test_new_word(self):
+    def test_change_to_next_question(self):
         """change_to_next_word actually changes the word"""
         old_word = self.test.question()
-        self.test.change_to_next_word()
+        self.test.change_to_next_question()
         new_word = self.test.question()
         self.assertFalse(old_word == new_word)
 
@@ -27,7 +27,7 @@ class TestExercise(unittest.TestCase):
 
     def test_printable_answers(self):
         """printable_translations works correctly"""
-        self.test.change_to_next_word()
+        self.test.change_to_next_question()
         next_word = self.test.printable_answers()
         should_be = "  poika  lapsi"
         self.assertEqual(should_be, next_word)
