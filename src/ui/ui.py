@@ -19,14 +19,14 @@ class Ui:
         self.command_handler = CommandHandler(io)
 
     def program(self):
-        """The program loop"""
+        """The loop for the main menu"""
         while True:
             self._print_commands()
             command = self.io.read("Anna komento: ")
             self.command_handler.get(command).run()
 
     def _print_commands(self):
-        """Print all commands for the user"""
+        """Print all commands for the user in the main menu"""
         self.io.write("\nKomennot:")
         for command in COMMANDS.values():
             self.io.write("  " + command)
@@ -50,6 +50,7 @@ class CommandHandler:
 
 
 class WordTest:
+    """Contains the program logic of word tests"""
     def __init__(self, io):
         self.io = io
 
@@ -78,6 +79,7 @@ class WordTest:
                 self.io.write("\nVastaus väärin, yritä uudelleen.")
 
     def choose_word_test(self):
+        """Allows user to choose the word test"""
         word_tests = exercise_repository.get_all_word_tests()
         while True:
             self.print_all_word_tests(word_tests)
@@ -87,6 +89,7 @@ class WordTest:
                     return test_id
 
     def print_all_word_tests(self, word_tests):
+        """Print all choosable word tests for the user to see"""
         self.io.write("\nValitse testi")
         for test in word_tests:
             self.io.write(f"  {test['id']} {test['name']}")

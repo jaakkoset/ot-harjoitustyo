@@ -117,6 +117,7 @@ def add_word_test_2(connection):
 
 
 def insert_exercise_data(connection, questions: list[dict], info: dict):
+    """Inserts given exercise data into the database."""
     cursor = connection.cursor()
 
     cursor.execute(

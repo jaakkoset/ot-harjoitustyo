@@ -1,15 +1,19 @@
-"""Class WordRepository provides methods for database queries involving words"""
+"""Class ExerciseRepository provides methods for database queries involving exercises"""
 
 from database_connection import get_database_connection
 
 
 class ExerciseRepository:
-    """Methods for database queries involving words"""
+    """Methods for database queries involving exercises.
+
+    Attributes:
+        connection: connection for the database.
+    """
 
     def __init__(self, connection):
         self._connection = connection
 
-    def get_exercise_data(self, exercise_id: str) -> tuple[dict, list[dict]]:
+    def get_exercise_data(self, exercise_id: str) -> tuple[dict, list]:
         """
         Return the exercise info, questions and correct answers.
 
@@ -17,8 +21,8 @@ class ExerciseRepository:
             exercise_id: the id number of the exrcise.
 
         Returns:
-            tuple: (exercise, all_exercise_questions) where exercise is a dictionary
-            {"id": (str), "name": (str), "guide": (str)}
+            A tuple (exercise, all_exercise_questions) where exercise is a dictionary in
+            the form of {"id": (str), "name": (str), "guide": (str)}
             and all_exercise_questions is a list containing dictionaries in the form of
             {"id": (str), "exercise_id": (str), "question": (str), "answers": (tuple)}
         """
@@ -70,11 +74,15 @@ class ExerciseRepository:
         return exercise, all_exercise_questions
 
     def get_all_word_tests(self) -> list:
-        """Return all word tests"""
+        """Return a list of all word tests. For each word test the list containes a
+        dictionary that has id, name, guide and type of the word test."""
         return self.get_all_exercises("word test")
 
     def get_all_exercises(self, exercise_type: str) -> list:
-        """Return all exercises of the give type"""
+        """Return list of all exercises of the give type
+
+        Args:
+            exercise_type: e.g. word test"""
         cursor = self._connection.cursor()
 
         cursor.execute(

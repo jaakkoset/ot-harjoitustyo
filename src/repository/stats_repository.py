@@ -7,6 +7,7 @@ from database_connection import get_database_connection
 
 
 class StatsRepository:
+    """Methods for adding and querying statics from the database"""
     def __init__(self, connection):
         self._connection = connection
         self._stats = {"correct word test answers": 0}

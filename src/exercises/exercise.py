@@ -1,10 +1,19 @@
-"Class WordTest provides methods for word tests"
 from repository.exercise_repository import exercise_repository
 from repository.stats_repository import stats_repository
 
 
 class Exercise:
-    """Methods for word tests"""
+    """Methods for handling questions and checking answers.
+    
+    Attributes:
+        exercise_id: id number of the exercise.
+        exercise_repo: the repository where exercises are saved.
+        stats_repo: the repository where stats are saved.
+        exercise: a dictionary with id, name and guide of the exercise.
+        questions: a list of all questions.
+        number_of_question: the number of questions.
+        question_index: an integer count of the questions that have been answered.
+        """
 
     def __init__(
         self,
@@ -49,7 +58,8 @@ class Exercise:
         return text
 
     def check_answer(self, answer) -> bool:
-        """Check the answer given by the user"""
+        """Check the answer given by the user. Return True when the answer is correct
+        and False otherwise."""
         if answer in self.questions[self.question_index]["answers"]:
             self.add_correct_word_test_answer_to_stats()
             return True
