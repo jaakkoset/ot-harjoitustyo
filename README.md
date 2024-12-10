@@ -18,6 +18,8 @@ Vaatimuksena on Python-versio `3.10`.
 
 * [Changelog](./dokumentaatio/changelog.md)
 
+* [Käyttöohje](./dokumentaatio/kayttoohje.md)
+
 ## Asennus
 
 Asenna riippuvuudet komennolla
