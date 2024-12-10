@@ -4,7 +4,7 @@ from exercises.exercise import Exercise
 
 class TestExercise(unittest.TestCase):
     def setUp(self):
-        self.test = Exercise(1)
+        self.test = Exercise(1, StubExerciseRepository())
 
     def test_new_word(self):
         """change_to_next_word actually changes the word"""
@@ -14,21 +14,23 @@ class TestExercise(unittest.TestCase):
         self.assertFalse(old_word == new_word)
 
     def test_question(self):
-        """question returns a string"""
-        latin_word = self.test.question()
-        self.assertIsInstance(latin_word, str)
+        """Method question returns the correct question"""
+        question = self.test.question()
+        should_be = "puella"
+        self.assertEqual(should_be, question)
 
     def test_answers(self):
-        """Answers returns a list"""
-        translation = self.test.answers()
-        self.assertIsInstance(translation, list)
+        """Method answers returns the answers"""
+        answers = self.test.answers()
+        should_be = ("tyttö",)
+        self.assertEqual(should_be, answers)
 
     def test_printable_answers(self):
         """printable_translations works correctly"""
-        word_test = Exercise(1, exercise_repo=StubExerciseRepository())
-        word_test.change_to_next_word()
+        self.test.change_to_next_word()
+        next_word = self.test.printable_answers()
         should_be = "  poika  lapsi"
-        self.assertEqual(word_test.printable_answers(), should_be)
+        self.assertEqual(should_be, next_word)
 
 
 class StubExerciseRepository:
