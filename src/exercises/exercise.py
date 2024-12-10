@@ -7,8 +7,6 @@ class Exercise:
     Attributes:
         exercise_id: id number of the exercise.
         exercise_repo: the repository where exercises are saved.
-        stats_repo: the repository where stats are saved.
-        exercise: a dictionary with id, name and guide of the exercise.
         questions: a list of all questions.
         number_of_question: the number of questions.
         question_index: an integer count of the questions that have been answered.
@@ -22,14 +20,9 @@ class Exercise:
         self.exercise_id = exercise_id
         self.exercise_repo = exercise_repo
 
-        # self.exercise = self.exercise_repo.get_exercise_info(exercise_id)
         self.questions = self.exercise_repo.get_exercise_questions(exercise_id)
         self.number_of_question = len(self.questions)
         self.question_index = 0
-
-    def question_id(self) -> str:
-        """Return the id number of the question"""
-        return self.questions[self.question_index]["id"]
 
     def change_to_next_word(self) -> bool:
         """Change the current word. Return True if word is changed and False if there
