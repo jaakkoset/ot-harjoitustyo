@@ -160,6 +160,23 @@ def insert_exercise_data(connection, questions: list[dict], info: dict):
     connection.commit()
 
 
+def add_a_row_to_stats(connection):
+    """Creates the first row of the Stats table. It is the only row needed"""
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+            INSERT INTO Stats
+                (correct_word_test_answers,
+                wrong_word_test_answers,
+                word_tests_completed)
+            VALUES
+                (0, 0, 0);
+            """,
+    )
+    connection.commit()
+
+
 def initialize_database():
     """Delete all tables if they exist and recreate them"""
     connection = get_database_connection()
@@ -172,6 +189,8 @@ def initialize_database():
     add_word_test_1(connection)
     print("Add word test 2")
     add_word_test_2(connection)
+    print("Add a row to Stats")
+    add_a_row_to_stats(connection)
 
 
 if __name__ == "__main__":

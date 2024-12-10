@@ -106,8 +106,11 @@ class Stats:
 
     def run(self):
         """Show statistics about the user"""
-        correct_answers = self.stats.get_total_correct_word_test_answers()
-        self.io.write(f"\nOlet vastannut oikein {correct_answers} sanaan")
+        stats = self.stats.get_all_stats()
+        self.io.write("\nSanakokeiden tilastot")
+        self.io.write(
+            f"\n  Olet suomentanut oikein {stats['correct_word_test_answers']} sanaa"
+        )
 
 
 class InvalidCommand:
