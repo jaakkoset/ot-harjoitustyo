@@ -61,8 +61,9 @@ def create_tables(connection):
         CREATE TABLE Stats
         (
             id INTEGER PRIMARY KEY,
-            correct_answers INTEGER,
-            tests_completed INTEGER
+            correct_word_test_answers INTEGER,
+            wrong_word_test_answers INTEGER,
+            word_tests_completed INTEGER
         );
     """
     )
