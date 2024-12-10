@@ -22,3 +22,6 @@ class WordTestService:
         """Return a list of all word tests. For each word test the list containes a
         dictionary that has id, name, guide and type of the word test."""
         return self.exercise_repo.get_all_exercises("word test")
+
+    def add_correct_word_test_answer_to_stats(self):
+        self.stats_repo.add_correct_word_test_answer()

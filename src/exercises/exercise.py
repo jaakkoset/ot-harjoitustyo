@@ -1,5 +1,4 @@
 from repository.exercise_repository import exercise_repository
-from repository.stats_repository import stats_repository
 
 
 class Exercise:
@@ -19,11 +18,9 @@ class Exercise:
         self,
         exercise_id,
         exercise_repo=exercise_repository,
-        stats_repo=stats_repository,
     ):
         self.exercise_id = exercise_id
         self.exercise_repo = exercise_repo
-        self.stats_repo = stats_repo
 
         # self.exercise = self.exercise_repo.get_exercise_info(exercise_id)
         self.questions = self.exercise_repo.get_exercise_questions(exercise_id)
@@ -62,9 +59,5 @@ class Exercise:
         """Check the answer given by the user. Return True when the answer is correct
         and False otherwise."""
         if answer in self.questions[self.question_index]["answers"]:
-            self.add_correct_word_test_answer_to_stats()
             return True
         return False
-
-    def add_correct_word_test_answer_to_stats(self):
-        self.stats_repo.add_correct_word_test_answer()

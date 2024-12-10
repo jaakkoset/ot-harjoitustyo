@@ -51,13 +51,16 @@ class CommandHandler:
 
 class WordTest:
     """Contains the program logic of word tests"""
+
     def __init__(self, io):
         self.io = io
 
     def run(self):
         word_test_id = self.choose_word_test()
         test = Exercise(word_test_id)
-        self.io.write("\nVoit poistua kokeesta missä vaiheessa tahansa kirjoittamalla x")
+        self.io.write(
+            "\nVoit poistua kokeesta missä vaiheessa tahansa kirjoittamalla x"
+        )
 
         while True:
             question = test.question()
@@ -71,6 +74,7 @@ class WordTest:
                 self.io.write("\nVastasit oikein")
                 self.io.write("Oikeat vastaukset:")
                 self.io.write(test.printable_answers())
+                WordTestService().add_correct_word_test_answer_to_stats()
                 if not test.change_to_next_word():
                     self.io.write("\nKoe valmis")
                     break
