@@ -81,6 +81,7 @@ class WordTest:
 
             else:
                 self.io.write("\nVastaus väärin, yritä uudelleen.")
+                WordTestService().add_wrong_word_test_answer_to_stats()
 
     def choose_word_test(self):
         """Allows user to choose the word test"""
@@ -109,7 +110,10 @@ class Stats:
         stats = self.stats.get_all_stats()
         self.io.write("\nSanakokeiden tilastot")
         self.io.write(
-            f"\n  Olet suomentanut oikein {stats['correct_word_test_answers']} sanaa"
+            f"  Olet suomentanut oikein {stats['correct_word_test_answers']} sanaa"
+        )
+        self.io.write(
+            f"  Olet antanut {stats['wrong_word_test_answers']} väärää käännöstä"
         )
 
 

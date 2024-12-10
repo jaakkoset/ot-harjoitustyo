@@ -11,7 +11,7 @@ class StatsRepository:
 
     def __init__(self, connection):
         self._connection = connection
-        # self.stats = {"correct word test answers": 0}
+
 
     def add_correct_word_test_answer(self):
         cursor = self._connection.cursor()
@@ -25,7 +25,19 @@ class StatsRepository:
                         WHERE id=1"""
         )
         self._connection.commit()
-        # self.stats["correct word test answers"] += 1
+
+    def add_wrong_word_test_answer(self):
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            """
+                        UPDATE Stats 
+                        SET 
+                            wrong_word_test_answers = 
+                            wrong_word_test_answers + 1 
+                        WHERE id=1"""
+        )
+        self._connection.commit()
 
     def get_all_stats(self) -> dict:
         cursor = self._connection.cursor()
@@ -44,7 +56,7 @@ class StatsRepository:
         stats = cursor.fetchone()
         stats = dict(stats)
         return stats
-        # return self.stats["correct word test answers"]
+
 
 
 stats_repository = StatsRepository(get_database_connection())
