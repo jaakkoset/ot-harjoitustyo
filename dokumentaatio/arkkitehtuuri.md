@@ -5,18 +5,26 @@
 ```mermaid
 classDiagram
     IOConsole -- Ui
-    Ui -- Exercise
-    Ui -- StatsRepository
-    CommandHandler -- Ui
-    IOConsole -- CommandHandler
+    Ui -- CommandHandler
     CommandHandler -- WordTest
     CommandHandler -- InvalidCommand
     CommandHandler -- Quit
+    CommandHandler -- Stats
+    Stats -- StatsRepository
+    WordTest -- Exercise
+    WordTest --WordTestService
     Exercise -- WordRepository
-    Exercise -- StatsRepository
+    WordTestService -- StatsRepository
+    WordTestService -- WordRepository
 ```
 
-Luokka IOConsole vastaa kommunikoinnista käyttäjän kanssa. Luokassa Ui on käyttöliitymän toiminnot sekä ohjelmasilmukka. WordTest sisältää sanakokeen tarvitsemat metodit. WordRepository hakee sanoja tietokannasta. StatsRepository tallentaa ja hakee tilastoja tietokannasta. WordTest pyytää StatsRepositorya tallentamaan tiedon jokaisesta oikeasta vastauksesta.
+Luokka IOConsole vastaa kommunikoinnista käyttäjän kanssa. Luokassa Ui on käyttöliitymän toiminnot sekä päävalikon silmukka.
+Exercise sisältää meneillään olevan harjoituksen kysymykset ja vastaukset ja metodeja niiden hallintaan.
+WordTest sisältää sanakokeen silmukan ja metodin, jolla käyttäjä valitsee sanakokeen.
+Stats tulostaa tilastot käyttäjälle.
+WordRepository hakee sanoja tietokannasta. 
+StatsRepository tallentaa ja hakee tilastoja tietokannasta.
+WordTestService sisältää sanakokeiden tarvitsemia toimintoja.
 
 
 ## Sekvenssikaavio

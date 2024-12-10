@@ -50,7 +50,7 @@ class CommandHandler:
 
 
 class WordTest:
-    """Contains the program logic of word tests"""
+    """Contains the program loop of word tests"""
 
     def __init__(self, io):
         self.io = io
