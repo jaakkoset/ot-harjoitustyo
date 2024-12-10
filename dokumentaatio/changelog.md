@@ -22,7 +22,7 @@
 
 ## Viikko 6
 
- - Lisätty services-kansio, jossa on ohjelmalogiikkaa
  - Lisätty käyttöohje
  - Luotu kansio services, johon on tarkoitus siirtää enemmän ohjelmalogiikkaa.
- - Tilastotietoa on enemmän ja se tallennetaan tietokantaan eli se on pysysvää
+ - Tilastotieto tallennetaan tietokantaan eli se on pysyvää
+ - Tilastotietoa on enemmän käyttäjälle saatavilla
