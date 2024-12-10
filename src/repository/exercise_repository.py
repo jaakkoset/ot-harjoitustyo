@@ -84,11 +84,6 @@ class ExerciseRepository:
 
         return exercise
 
-    def get_all_word_tests(self) -> list:
-        """Return a list of all word tests. For each word test the list containes a
-        dictionary that has id, name, guide and type of the word test."""
-        return self.get_all_exercises("word test")
-
     def get_all_exercises(self, exercise_type: str) -> list:
         """Return list of all exercises of the give type
 

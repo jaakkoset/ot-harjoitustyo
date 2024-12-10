@@ -1,7 +1,7 @@
 import sys
 from exercises.exercise import Exercise
 from repository.stats_repository import stats_repository
-from repository.exercise_repository import exercise_repository
+from services.word_test import WordTestService
 
 
 COMMANDS = {
@@ -80,7 +80,7 @@ class WordTest:
 
     def choose_word_test(self):
         """Allows user to choose the word test"""
-        word_tests = exercise_repository.get_all_word_tests()
+        word_tests = WordTestService().get_all_word_tests()
         while True:
             self.print_all_word_tests(word_tests)
             test_id = self.io.read("\nAnna testin numero: ")
