@@ -76,6 +76,7 @@ class WordTest:
                 self.io.write(test.printable_answers())
                 WordTestService().add_correct_word_test_answer_to_stats()
                 if not test.change_to_next_word():
+                    WordTestService().add_completed_word_test_to_stats()
                     self.io.write("\nKoe valmis")
                     break
 
@@ -110,11 +111,12 @@ class Stats:
         stats = self.stats.get_all_stats()
         self.io.write("\nSanakokeiden tilastot")
         self.io.write(
-            f"  Olet suomentanut oikein {stats['correct_word_test_answers']} sanaa"
+            f"  Olet kääntänyt oikein {stats['correct_word_test_answers']} sanaa"
         )
         self.io.write(
             f"  Olet antanut {stats['wrong_word_test_answers']} väärää käännöstä"
         )
+        self.io.write(f"  Olet suorittanut {stats['word_tests_completed']} sanakoetta")
 
 
 class InvalidCommand:

@@ -28,3 +28,6 @@ class WordTestService:
 
     def add_wrong_word_test_answer_to_stats(self):
         self.stats_repo.add_wrong_word_test_answer()
+
+    def add_completed_word_test_to_stats(self):
+        self.stats_repo.add_completed_word_test()
