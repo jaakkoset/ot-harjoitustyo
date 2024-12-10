@@ -19,7 +19,7 @@ classDiagram
 ```
 
 Luokka IOConsole vastaa kommunikoinnista käyttäjän kanssa. Luokassa Ui on käyttöliitymän toiminnot sekä päävalikon silmukka.
-Exercise sisältää meneillään olevan harjoituksen kysymykset ja vastaukset ja metodeja niiden hallintaan.
+Exercise sisältää meneillään olevan harjoituksen kysymykset ja vastaukset, jotka se hakee WordRepositorystä harjoituksen id-numeron perusteella.
 WordTest sisältää sanakokeen silmukan ja metodin, jolla käyttäjä valitsee sanakokeen.
 Stats tulostaa tilastot käyttäjälle.
 WordRepository hakee sanoja tietokannasta. 
