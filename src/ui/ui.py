@@ -17,11 +17,18 @@ class UI:
     def __init__(self, root):
         self._root = root
         root.geometry("800x1000")
-        self._entry = None
+        self._current_view = None
+
 
     def start(self):
-        MainMenu(self._root).start()
+        self._show_main_menu()
 
+    def _show_main_menu(self):
+        self._current_view = MainMenu(
+            self._root
+        )
+
+        self._current_view.pack()
 
 class WordTest:
     """Contains the program loop of word tests"""
