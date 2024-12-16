@@ -1,4 +1,5 @@
 import sys
+from tkinter import Tk, ttk, constants
 from exercises.exercise import Exercise
 from repository.stats_repository import stats_repository
 from services.word_test import WordTestService
@@ -11,42 +12,35 @@ COMMANDS = {
 }
 
 
-class Ui:
-    def __init__(self, io, stats_repo=stats_repository):
-        self.io = io
-        self.stats = stats_repo
+class UI:
+    def __init__(self, root):
+        self._root = root
 
-        self.command_handler = CommandHandler(io)
+    def start(self):
+        heading_label = ttk.Label(master=self._root, text="Päävalikko")
 
-    def program(self):
-        """The loop for the main menu"""
-        while True:
-            self._print_commands()
-            command = self.io.read("Anna komento: ")
-            self.command_handler.get(command).run()
+        word_test = ttk.Button(master=self._root, text="Tee sanakoe")
+        quit_program = ttk.Button(master=self._root, text="Lopeta ohjelma")
 
-    def _print_commands(self):
-        """Print all commands for the user in the main menu"""
-        self.io.write("\nKomennot:")
-        for command in COMMANDS.values():
-            self.io.write("  " + command)
+        heading_label.grid(row=0, column=0, columnspan=2, padx=10, pady=10)
+        word_test.grid(
+            row=2,
+            column=0,
+            columnspan=2,
+            sticky=(constants.E, constants.W),
+            padx=10,
+            pady=5,
+        )
+        quit_program.grid(
+            row=3,
+            column=0,
+            columnspan=2,
+            sticky=(constants.E, constants.W),
+            padx=10,
+            pady=5,
+        )
 
-
-class CommandHandler:
-    def __init__(self, io):
-        self.io = io
-
-        self.commands = {
-            "q": Quit(self.io),
-            "1": WordTest(self.io),
-            "4": Stats(self.io),
-        }
-
-    def get(self, command):
-        if command in self.commands:
-            return self.commands[command]
-
-        return InvalidCommand(self.io)
+        self._root.grid_columnconfigure(40, weight=40)
 
 
 class WordTest:
@@ -117,20 +111,3 @@ class Stats:
             f"  Olet antanut {stats['wrong_word_test_answers']} väärää käännöstä"
         )
         self.io.write(f"  Olet suorittanut {stats['word_tests_completed']} sanakoetta")
-
-
-class InvalidCommand:
-    def __init__(self, io):
-        self.io = io
-
-    def run(self):
-        self.io.write("\nVäärä komento")
-
-
-class Quit:
-    def __init__(self, io):
-        self.io = io
-
-    def run(self):
-        self.io.write("\nNäkemiin")
-        sys.exit(0)

@@ -1,5 +1,16 @@
-from ui.ui import Ui
-from io_console import IOConsole
+from tkinter import Tk
+from ui.ui import UI
+
+
+def main():
+    window = Tk()
+    window.title("Una lingua")
+
+    ui_view = UI(window)
+    ui_view.start()
+
+    window.mainloop()
+
 
 if __name__ == "__main__":
-    Ui(IOConsole()).program()
+    main()
