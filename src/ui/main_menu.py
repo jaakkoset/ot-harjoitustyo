@@ -28,7 +28,7 @@ class MainMenu:
         quit_button = ttk.Button(
             master=self._frame,
             text="Lopeta ohjelma",
-            command=lambda: self._handle_quit_button("quit button"),
+            command=self._root.destroy,
         )
 
         self._entry = ttk.Entry(master=self._frame)
@@ -51,10 +51,4 @@ class MainMenu:
             pady=5,
         )
 
-        self._entry.grid(row=4, column=0, padx=10, pady=10)
-
         self._frame.grid_columnconfigure(0, weight=1, minsize=600)
-
-    def _handle_quit_button(self, x):
-        entry_value = self._entry.get()
-        print(f"Value of entry is: {entry_value} + {x}")
