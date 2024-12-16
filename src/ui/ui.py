@@ -1,5 +1,6 @@
 import sys
 from tkinter import Tk, ttk, constants
+from ui.main_menu import MainMenu
 from exercises.exercise import Exercise
 from repository.stats_repository import stats_repository
 from services.word_test import WordTestService
@@ -15,32 +16,11 @@ COMMANDS = {
 class UI:
     def __init__(self, root):
         self._root = root
+        root.geometry("800x1000")
+        self._entry = None
 
     def start(self):
-        heading_label = ttk.Label(master=self._root, text="Päävalikko")
-
-        word_test = ttk.Button(master=self._root, text="Tee sanakoe")
-        quit_program = ttk.Button(master=self._root, text="Lopeta ohjelma")
-
-        heading_label.grid(row=0, column=0, columnspan=2, padx=10, pady=10)
-        word_test.grid(
-            row=2,
-            column=0,
-            columnspan=2,
-            sticky=(constants.E, constants.W),
-            padx=10,
-            pady=5,
-        )
-        quit_program.grid(
-            row=3,
-            column=0,
-            columnspan=2,
-            sticky=(constants.E, constants.W),
-            padx=10,
-            pady=5,
-        )
-
-        self._root.grid_columnconfigure(40, weight=40)
+        MainMenu(self._root).start()
 
 
 class WordTest:
