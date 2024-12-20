@@ -2,6 +2,7 @@
 # from tkinter import Tk, ttk, constants
 from ui.main_menu import MainMenu
 from ui.exercise import Exercise
+from ui.select_exercise import SelectExercise
 
 # from exercises.exercise import Exercise
 # from repository.stats_repository import stats_repository
@@ -33,10 +34,14 @@ class UI:
         """Opens an exercise as a word test"""
         self._show_exercise("Sanakoe")
 
+    def _handle_select_word_test(self):
+        """Opens a list of all word tests"""
+        self._show_select_exercise("word test")
+
     def _show_main_menu(self):
         """Opens the main menu"""
         self._hide_current_view()
-        self._current_view = MainMenu(self._root, self._handle_word_test)
+        self._current_view = MainMenu(self._root, self._handle_select_word_test)
 
         self._current_view.pack()
 
@@ -48,6 +53,18 @@ class UI:
 
         self._current_view.pack()
 
+    def _show_select_exercise(self, exercise_type):
+        """Opens the window where the user can select an exercise"""
+        self._hide_current_view()
+        if exercise_type == "word test":
+            open_exercise = self._handle_word_test
+        else:
+            raise TypeError("Ei ollut sanakoe")
+
+        windows = {"main menu": self._handle_main_menu, "open exercise": open_exercise}
+        self._current_view = SelectExercise(self._root, windows, exercise_type)
+
+        self._current_view.pack()
 
 # class WordTest:
 #     """Contains the program loop of word tests"""
