@@ -2,10 +2,11 @@ from tkinter import ttk, constants
 
 
 class Exercise:
-    def __init__(self, root, handle_main_menu, title):
+    def __init__(self, root, handle_main_menu, title, exercise_id):
         self._root = root
         self._handle_main_menu = handle_main_menu
         self.title = title
+        self.exercise_id = exercise_id
         self._frame = None
         self._entry = None
 
@@ -25,6 +26,7 @@ class Exercise:
             command=self._handle_main_menu,
         )
         heading_label = ttk.Label(master=self._frame, text=self.title)
+        id_label = ttk.Label(master=self._frame, text=f"id: {self.exercise_id}")
         question_label = ttk.Label(master=self._frame, text="Anna vastaus")
 
         answer_button = ttk.Button(
@@ -36,6 +38,7 @@ class Exercise:
         self._entry = ttk.Entry(master=self._frame)
 
         heading_label.grid(padx=10, pady=10)
+        id_label.grid(padx=10, pady=10)
         main_menu_button.grid(
             row=1,
             column=0,
@@ -50,7 +53,6 @@ class Exercise:
             row=4,
             column=0,
             columnspan=2,
-
             padx=10,
             pady=5,
         )

@@ -2,7 +2,6 @@ from tkinter import ttk, constants
 from services.word_test import WordTestService
 
 WORD_TEST_LABELS = {"heading": "Valitse sanakoe"}
-OTHER_LABELS = {"heading": "Valitse OTHER"}
 
 
 class SelectExercise:
@@ -19,10 +18,8 @@ class SelectExercise:
 
     def _set_labels(self):
         """Set the correct labels for an exercise"""
-        if self._exercise_type == "word test":
-            labels = WORD_TEST_LABELS
-        else:
-            labels = OTHER_LABELS
+        labels = WORD_TEST_LABELS
+
         return labels
 
     def _get_exercises(self) -> list:
@@ -47,7 +44,7 @@ class SelectExercise:
             exercise_button = ttk.Button(
                 master=self._frame,
                 text=exercise["name"],
-                command=self._open_exercise,
+                command=lambda id=exercise["id"]: self._open_exercise(id),
             )
             exercise_button.grid(
                 column=0,

@@ -30,9 +30,9 @@ class UI:
     def _handle_main_menu(self):
         self._show_main_menu()
 
-    def _handle_word_test(self):
+    def _handle_word_test(self, exercise_id):
         """Opens an exercise as a word test"""
-        self._show_exercise("Sanakoe")
+        self._show_exercise("Sanakoe", exercise_id)
 
     def _handle_select_word_test(self):
         """Opens a list of all word tests"""
@@ -45,11 +45,11 @@ class UI:
 
         self._current_view.pack()
 
-    def _show_exercise(self, title):
+    def _show_exercise(self, title, exercise_id):
         """Opens the the window for any exercise. Only the title and some texts differ
         between exercises, but otherwise the logic is the same."""
         self._hide_current_view()
-        self._current_view = Exercise(self._root, self._handle_main_menu, title)
+        self._current_view = Exercise(self._root, self._handle_main_menu, title, exercise_id)
 
         self._current_view.pack()
 
