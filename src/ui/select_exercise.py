@@ -1,4 +1,5 @@
 from tkinter import ttk, constants
+from services.word_test import WordTestService
 
 WORD_TEST_LABELS = {"heading": "Valitse sanakoe"}
 OTHER_LABELS = {"heading": "Valitse OTHER"}
@@ -24,6 +25,9 @@ class SelectExercise:
             labels = OTHER_LABELS
         return labels
 
+    def _get_exercises(self) -> list:
+        return WordTestService().get_all_word_tests()
+
     def pack(self):
         self._frame.pack(fill=constants.X)
 
@@ -34,23 +38,23 @@ class SelectExercise:
         self._frame = ttk.Frame(master=self._root)
         heading_label = ttk.Label(master=self._frame, text=self.labels["heading"])
 
-        word_test_button = ttk.Button(
-            master=self._frame,
-            text="Esim nappi",
-            command=self._open_exercise,
-        )
-
-
         self._entry = ttk.Entry(master=self._frame)
-
         heading_label.grid(padx=10, pady=10)
-        word_test_button.grid(
-            row=2,
-            column=0,
-            columnspan=2,
-            sticky=(constants.E, constants.W),
-            padx=10,
-            pady=5,
-        )
+
+        exercises = self._get_exercises()
+
+        for exercise in exercises:
+            exercise_button = ttk.Button(
+                master=self._frame,
+                text=exercise["name"],
+                command=self._open_exercise,
+            )
+            exercise_button.grid(
+                column=0,
+                columnspan=2,
+                sticky=(constants.E, constants.W),
+                padx=10,
+                pady=5,
+            )
 
         self._frame.grid_columnconfigure(0, weight=1, minsize=600)
