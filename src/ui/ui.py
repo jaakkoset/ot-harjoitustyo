@@ -1,5 +1,5 @@
-import sys
-from tkinter import Tk, ttk, constants
+# import sys
+# from tkinter import Tk, ttk, constants
 from ui.main_menu import MainMenu
 from ui.exercise import Exercise
 
@@ -8,20 +8,16 @@ from ui.exercise import Exercise
 # from services.word_test import WordTestService
 
 
-COMMANDS = {
-    "q": "q lopeta ohjelma",
-    "1": "1 sanakoe",
-    "4": "4 näytä tilastot",
-}
-
-
 class UI:
+    """This class is responsible for the user interface"""
+
     def __init__(self, root):
         self._root = root
-        root.geometry("800x1000")
+        root.geometry("800x800")
         self._current_view = None
 
     def start(self):
+        """Starts the program by opening the main menu"""
         self._show_main_menu()
 
     def _hide_current_view(self):
@@ -34,19 +30,24 @@ class UI:
         self._show_main_menu()
 
     def _handle_word_test(self):
-        self._show_word_exercise("Sanakoe")
+        """Opens an exercise as a word test"""
+        self._show_exercise("Sanakoe")
 
     def _show_main_menu(self):
+        """Opens the main menu"""
         self._hide_current_view()
         self._current_view = MainMenu(self._root, self._handle_word_test)
 
         self._current_view.pack()
 
-    def _show_word_exercise(self, title):
+    def _show_exercise(self, title):
+        """Opens the the window for any exercise. Only the title and some texts differ
+        between exercises, but otherwise the logic is the same."""
         self._hide_current_view()
         self._current_view = Exercise(self._root, self._handle_main_menu, title)
 
         self._current_view.pack()
+
 
 # class WordTest:
 #     """Contains the program loop of word tests"""
