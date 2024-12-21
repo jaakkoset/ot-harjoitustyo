@@ -1,6 +1,7 @@
 from ui.main_menu import MainMenu
 from ui.exercise import ExerciseUI
 from ui.select_exercise import SelectExercise
+from ui.statistics import StatisticsUI
 
 
 class UI:
@@ -32,10 +33,15 @@ class UI:
         """Opens a list of all word tests"""
         self._show_select_exercise("word test")
 
+    def _handle_statistics(self):
+        self._show_statistics()
+
     def _show_main_menu(self):
         """Opens the main menu"""
         self._hide_current_view()
-        self._current_view = MainMenu(self._root, self._handle_select_word_test)
+        self._current_view = MainMenu(
+            self._root, self._handle_select_word_test, self._handle_statistics
+        )
 
         self._current_view.pack()
 
@@ -51,11 +57,18 @@ class UI:
         """Opens the window where the user can select an exercise"""
         self._hide_current_view()
         if exercise_type == "word test":
-            open_exercise = self._handle_word_test
+            handle_open_exercise = self._handle_word_test
         else:
             raise TypeError("Ei ollut sanakoe")
 
-        windows = {"main menu": self._handle_main_menu, "open exercise": open_exercise}
-        self._current_view = SelectExercise(self._root, windows, exercise_type)
+        self._current_view = SelectExercise(
+            self._root, exercise_type, self._handle_main_menu, handle_open_exercise
+        )
 
+        self._current_view.pack()
+
+    def _show_statistics(self):
+        """Show all statistics"""
+        self._hide_current_view()
+        self._current_view = StatisticsUI(self._root, self._handle_main_menu)
         self._current_view.pack()

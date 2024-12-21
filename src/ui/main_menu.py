@@ -2,9 +2,10 @@ from tkinter import ttk, constants
 
 
 class MainMenu:
-    def __init__(self, root, handle_select_word_test):
+    def __init__(self, root, handle_select_word_test, handle_statistics):
         self._root = root
         self._handle_select_word_test = handle_select_word_test
+        self._handle_statistics = handle_statistics
         self._frame = None
         self._entry = None
 
@@ -25,6 +26,11 @@ class MainMenu:
             text="Tee sanakoe",
             command=self._handle_select_word_test,
         )
+        stats_button = ttk.Button(
+            master=self._frame,
+            text="Katso tilastot",
+            command=self._handle_statistics,
+        )
         quit_button = ttk.Button(
             master=self._frame,
             text="Lopeta ohjelma",
@@ -42,8 +48,16 @@ class MainMenu:
             padx=10,
             pady=5,
         )
-        quit_button.grid(
+        stats_button.grid(
             row=3,
+            column=0,
+            columnspan=2,
+            sticky=(constants.E, constants.W),
+            padx=10,
+            pady=5,
+        )
+        quit_button.grid(
+            row=4,
             column=0,
             columnspan=2,
             sticky=(constants.E, constants.W),

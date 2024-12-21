@@ -5,10 +5,12 @@ WORD_TEST_LABELS = {"heading": "Valitse sanakoe"}
 
 
 class SelectExercise:
-    def __init__(self, root, windows: dict, exercise_type: str):
+    def __init__(
+        self, root, exercise_type: str, handle_main_menu, handle_open_exercise
+    ):
         self._root = root
-        self._handle_main_menu = windows["main menu"]
-        self._open_exercise = windows["open exercise"]
+        self._handle_main_menu = handle_main_menu
+        self._open_exercise = handle_open_exercise
         self._exercise_type = exercise_type
         self.labels = self._set_labels()
         self._frame = None
