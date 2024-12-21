@@ -39,12 +39,12 @@ class TestExercise(unittest.TestCase):
         self.assertFalse(self.test.change_to_next_question())
 
     def test_check_answer(self):
-        """Method check_answer returns True when the answer is true and False otherwise
-        """
+        """Method check_answer returns True when the answer is true and False otherwise"""
         wrong_answer = self.test.check_answer("tyllerö")
         self.assertFalse(wrong_answer)
         correct_answer = self.test.check_answer("tyttö")
         self.assertTrue(correct_answer)
+
 
 class StubExerciseRepository:
     def __init__(self):
@@ -62,6 +62,14 @@ class StubExerciseRepository:
                 "answers": ("poika", "lapsi"),
             },
         ]
+        self.exercise_info = {
+            "name": "Helppo sanakoe",
+            "guide": "Suomenna annetut sanat",
+            "type": "word test",
+        }
 
-    def get_exercise_questions(self, word_id):
+    def get_exercise_questions(self, exercise_id):
         return self.all_exercise_questions
+
+    def get_exercise_info(self, exercise_id):
+        return self.exercise_info
