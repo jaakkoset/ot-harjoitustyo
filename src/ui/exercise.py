@@ -3,10 +3,9 @@ from entities.exercise import Exercise
 
 
 class ExerciseUI:
-    def __init__(self, root, handle_main_menu, title, exercise_id):
+    def __init__(self, root, handle_main_menu, exercise_id):
         self._root = root
         self._handle_main_menu = handle_main_menu
-        self.title = title
         self.exercise_id = exercise_id
         self.exercise = Exercise(self.exercise_id)
 
@@ -22,12 +21,12 @@ class ExerciseUI:
     def pack(self):
         self._frame.pack(fill=constants.X)
 
-    def destroy_frame(self):
+    def destroy(self):
         if self._frame is not None:
             self._frame.destroy()
 
     def initialize_frame(self):
-        self.destroy_frame()
+        self.destroy()
         self._frame = ttk.Frame(master=self._root)
         self._frame.grid_columnconfigure(0, weight=1, minsize=600)
         self.pack()
@@ -42,9 +41,8 @@ class ExerciseUI:
         self._set_title()
         self._set_main_menu_button()
         self._set_question()
-        self._set_answer_field()
+        self._set_answer_entry_field()
         self._set_answer_button()
-        # self._frame.grid_columnconfigure(0, weight=1, minsize=600)
 
     def _set_title(self):
         """Set the title"""
@@ -68,14 +66,14 @@ class ExerciseUI:
         )
 
     def _set_question(self):
-        """Set the question"""
+        """Display the question"""
         question_label = ttk.Label(
             master=self._frame, text=f"Suomenna sana: {self.exercise.question()}"
         )
         question_label.grid(row=2, padx=10, pady=10)
 
-    def _set_answer_field(self):
-        """Set the answer field"""
+    def _set_answer_entry_field(self):
+        """Set the answer entry field"""
         self._entry = ttk.Entry(master=self._frame)
         self._entry.grid(row=3, column=0, padx=10, pady=10)
 
@@ -108,6 +106,20 @@ class ExerciseUI:
             pady=5,
         )
 
+    def _set_answer_label(self, label_text: str):
+        """Display the label that tells whether the answer was correct or not.
+
+        Args:
+            label_text: the text to be displayed"""
+        self.destroy_widget(self._was_answer_correct_label)
+        self._was_answer_correct_label = ttk.Label(master=self._frame, text=label_text)
+        self._was_answer_correct_label.grid(padx=10, pady=10)
+
+    def _set_no_more_questions_label(self):
+        """Display the label that tells that the exercise is completed"""
+        no_more_questions_label = ttk.Label(master=self._frame, text="Koe on ohi")
+        no_more_questions_label.grid(padx=10, pady=10)
+
     def _display_correct_answer_view(self):
         """Display the view the user gets after answering correctly"""
         self.initialize_frame()
@@ -120,17 +132,8 @@ class ExerciseUI:
         """Display the view the user gets after answering incorrectly"""
         self._set_answer_label("Vastaus on väärin")
 
-    def _set_answer_label(self, label_text: str):
-        """Display the label that tells whether the answer was correct or not
-
-        Args:
-            label_text: the text to be displayed"""
-        self.destroy_widget(self._was_answer_correct_label)
-        self._was_answer_correct_label = ttk.Label(master=self._frame, text=label_text)
-        self._was_answer_correct_label.grid(padx=10, pady=10)
-
     def _handle_answer(self):
-        """Handles the anser given by the user"""
+        """Handles the anwser given by the user"""
         entry_value = self._entry.get()
         answer_is_correct = self.exercise.check_answer(entry_value)
         if answer_is_correct:
@@ -142,4 +145,16 @@ class ExerciseUI:
         self._set_next_question_button()
 
     def _handle_next_question(self):
-        pass
+        """Changes the question or if there are no questions left, ends the exercise"""
+        questions_was_changed = self.exercise.change_to_next_question()
+        if questions_was_changed:
+            self._initialize()
+        else:
+            self._display_no_more_questions()
+
+    def _display_no_more_questions(self):
+        """Display the view that the user gets when all questions are done"""
+        self.initialize_frame()
+        self._set_title()
+        self._set_main_menu_button()
+        self._set_no_more_questions_label()
