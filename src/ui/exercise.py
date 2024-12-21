@@ -14,7 +14,7 @@ class ExerciseUI:
         self._entry = None
         self._question_label = None
         self._answer_button = None
-        self._check_answer_label = None
+        self._was_answer_correct_label = None
 
         self._initialize()
 
@@ -87,22 +87,31 @@ class ExerciseUI:
             pady=5,
         )
 
-    def _set_correct_answer_view(self):
-        """Set the view the user gets after answering correctly"""
+    def _display_correct_answer_view(self):
+        """Display the view the user gets after answering correctly"""
         self.destroy_widget(self._answer_button)
         self.destroy_widget(self._entry)
+        self._set_answer_label("Vastaus on oikein")
+
+    def _display_wrong_answer_view(self):
+        """Display the view the user gets after answering incorrectly"""
+        self._set_answer_label("Vastaus on väärin")
+
+    def _set_answer_label(self, label_text: str):
+        """Display the label that tells whether the answer was correct or not
+
+        Args:
+            label_text: the text to be displayed"""
+        self.destroy_widget(self._was_answer_correct_label)
+
+        self._was_answer_correct_label = ttk.Label(master=self._frame, text=label_text)
+        self._was_answer_correct_label.grid(padx=10, pady=10)
 
     def _handle_answer(self):
-        if self._check_answer_label is not None:
-            self._check_answer_label.destroy()
+        """Handles the anser given by the user"""
         entry_value = self._entry.get()
         answer_is_correct = self.exercise.check_answer(entry_value)
         if answer_is_correct:
-            text = "oikein"
-            self._set_correct_answer_view()
+            self._display_correct_answer_view()
         else:
-            text = "väärin"
-        self._check_answer_label = ttk.Label(
-            master=self._frame, text=f"Vastaus on {text}"
-        )
-        self._check_answer_label.grid(padx=10, pady=10)
+            self._display_wrong_answer_view()
