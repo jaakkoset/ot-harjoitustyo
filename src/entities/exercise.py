@@ -2,7 +2,9 @@ from repository.exercise_repository import exercise_repository
 
 
 class Exercise:
-    """Methods for handling questions and checking answers.
+    """
+    An Exercise object includes all the questions and answers of a given exercise and it
+    also has methods for handling them and checking answers given by the user. 
 
     Attributes:
         exercise_id: id number of the exercise.
@@ -21,12 +23,14 @@ class Exercise:
         self.exercise_repo = exercise_repo
 
         self.questions = self.exercise_repo.get_exercise_questions(exercise_id)
+        self.exercise_info = self.exercise_repo.get_exercise_info(exercise_id)
         self.number_of_question = len(self.questions)
         self.question_index = 0
 
     def change_to_next_question(self) -> bool:
-        """Change the current word. Return True if word is changed and False if there
-        are no words left."""
+        """
+        Change the current question. Return True if question is changed and False if
+        there are no questions left."""
         self.question_index += 1
         no_questions_left = self.question_index >= self.number_of_question
         if no_questions_left:

@@ -1,5 +1,5 @@
 import unittest
-from exercises.exercise import Exercise
+from entities.exercise import Exercise
 
 
 class TestExercise(unittest.TestCase):

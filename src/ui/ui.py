@@ -1,7 +1,7 @@
 # import sys
 # from tkinter import Tk, ttk, constants
 from ui.main_menu import MainMenu
-from ui.exercise import Exercise
+from ui.exercise import ExerciseUI
 from ui.select_exercise import SelectExercise
 
 # from exercises.exercise import Exercise
@@ -49,7 +49,7 @@ class UI:
         """Opens the the window for any exercise. Only the title and some texts differ
         between exercises, but otherwise the logic is the same."""
         self._hide_current_view()
-        self._current_view = Exercise(self._root, self._handle_main_menu, title, exercise_id)
+        self._current_view = ExerciseUI(self._root, self._handle_main_menu, title, exercise_id)
 
         self._current_view.pack()
 
