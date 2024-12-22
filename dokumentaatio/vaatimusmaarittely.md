@@ -17,4 +17,3 @@ Sovelluksella on vain yksi käyttäjä.
  - Käyttäjä voi tehdä harjoituksia, joissa hänen pitää tunnistaa lauserakenteita esimerkkilauseista.
  
  - (Tehty) Käyttäjä voi nähdä tilastoista kuinka moneen tehtävään hän on vastannut.
-

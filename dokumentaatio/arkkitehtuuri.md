@@ -4,28 +4,30 @@
 
 ```mermaid
 classDiagram
-    IOConsole -- Ui
-    Ui -- CommandHandler
-    CommandHandler -- WordTest
-    CommandHandler -- InvalidCommand
-    CommandHandler -- Quit
-    CommandHandler -- Stats
-    Stats -- StatsRepository
-    WordTest -- Exercise
-    WordTest --WordTestService
-    Exercise -- WordRepository
+    Ui -- MainMenu
+    Ui -- ExerciseUI
+    Ui -- SelectExercise
+    Ui -- StatisticsUI
+
+    StatisticsUI -- StatisticsService
+    SelectExercise -- ExercisesService
+    ExerciseUI -- WordTestService
+    Exercise ..> ExerciseRepository
+    WordTestService -- Exercise
     WordTestService -- StatsRepository
-    WordTestService -- WordRepository
+    ExercisesService -- ExerciseRepository
+    
+    StatisticsService -- StatsRepository
+    ExerciseRepository
+    StatsRepository
 ```
 
-Luokka IOConsole vastaa kommunikoinnista käyttäjän kanssa. Luokassa Ui on käyttöliitymän toiminnot sekä päävalikon silmukka.
-Exercise sisältää meneillään olevan harjoituksen kysymykset ja vastaukset, jotka se hakee WordRepositorystä harjoituksen id-numeron perusteella.
-WordTest sisältää sanakokeen silmukan ja metodin, jolla käyttäjä valitsee sanakokeen.
-Stats tulostaa tilastot käyttäjälle.
-WordRepository hakee sanoja tietokannasta. 
-StatsRepository tallentaa ja hakee tilastoja tietokannasta.
-WordTestService sisältää sanakokeiden tarvitsemia toimintoja.
+Luokka UI on ylin käyttöliittymästä vastaava luokka ja se avaa näkymät, jotka käyttäjä näkee. MainMenu vastaa päävälikon/etusivun näkymästä. SelectExercise vastaa näkymästä, jossa käyttäjä voi valita harjoitukse. ExerciseUI vastaa kokeen näkymästä ja StatisticsUI vastaa sivusta, jolla näkyy tilastot.
 
+Luokka Exercise sisältää meneillään olevan harjoituksen kysymykset ja vastaukset. Kun siitä luodaan uusi olio, se hakee harjoituksen tiedot ExerciseRepositorystä harjoituksen id-numeron perusteella.
+WordTestService sisältää sanakokeiden ohjelmalogiikan. StatisticsService hakee tilastotiedot ja muokkaa ne valmiiksi tulostettavaan muotoon. ExercisesService hakee tietokannasta kaikki harjoitukset listana.
+
+ExerciseRepository hakee harjoituksen tietoja tietokannasta. StatsRepository tallentaa ja hakee tilastoja tietokannasta.
 
 ## Sekvenssikaavio
 
@@ -54,5 +56,5 @@ sequenceDiagram
     WordTest ->> IOConsole: write()
     IOConsole ->> User: Suomenna sana: question
     WordTest ->> IOConsole: read()
-    IOConsole ->> User: 
+    IOConsole ->> User:
 ```

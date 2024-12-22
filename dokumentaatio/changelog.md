@@ -26,3 +26,8 @@
  - Luotu kansio services, johon on tarkoitus siirtää enemmän ohjelmalogiikkaa.
  - Tilastotieto tallennetaan tietokantaan eli se on pysyvää
  - Tilastotietoa on enemmän käyttäjälle saatavilla
+
+ ## Viikko 7
+
+ - Ohjelmalla on graafinen käyttöliittymä
+ - Dokumentaatio on päivitetty

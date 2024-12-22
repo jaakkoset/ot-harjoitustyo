@@ -16,16 +16,16 @@ Käynnistä ohjelma komennolla
 
     poetry run invoke start
 
-Ohjelma aukeaa tekstikäyttöliittymään.
+Ohjelma aukeaa päävalikkoon.
 
 ## Päävalikko
 
-Käynnistettäessä ohjelma avautuu päävalikkoon. Käyttäjä voi valita sanakokeen antamalla komennon 1. Komennolla 4 käyttäjä näkee tilastoja.
+Käynnistettäessä ohjelma avautuu päävalikkoon. Painamalla 'Tee sanakoe' siirtyy valikkoon, jossa voi valita sanakokeen. Painamalla 'Katso tilastot' avautuu sivu, jolla näkyy tilastotiedot. Ohjelman voi lopettaa painamlla 'Lopeta ohjelma'.
 
 ## Sanakokeen valitseminen
 
-Käyttäjä voi valita minkä sanakokeen hän tekee antamalla sitä vastaavan numeron komentona.
+Sanakokeen voi valita painamalla nappia. Päävalikkoon voi palata painamalla 'Takaisin päävalikkoon'..
 
 ## Sanakoe
 
-Sanakokeesta voi poistua milloin tahansa komennolla x. Muuten käyttäjän tulee antaa oikea suomennos näkyvillä olevasta sanasta. Kun kaikkiin sanakokeen kysymyksiin on vastattu, koe loppuu.
+Sanakokeesta voi poistua milloin tahansa painamalla 'Takaisin päävalikkoon'. Muuten kysymykseen voi antaa vastauksen kirjoittamalla se tekstikenttään ja painamlla 'Vastaa'. Ohjelma kertoo oliko vastaus oikein vai väärin. Jos vastaus oli oikein, käyttäjä ei voi enää vastata samaan kysymykseen uudelleen. Seuraavaan kysymykseen voi aina siirtyä painamalla 'Seuraava kysymys'. Takaisin päin ei voi enää siirtyä. Kun kaikki kysymykset on käyty läpi, koe loppuu. Jos kaikkiin kysymyksiin antoi oikean vastauksen, merkitään tilastoihin, että käyttäjä on suorittanut yhden uuden sanakokeen kokonaisuudessaan.
