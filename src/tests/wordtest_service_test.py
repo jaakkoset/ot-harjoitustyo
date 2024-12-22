@@ -2,7 +2,7 @@ import unittest
 from services.word_test import WordTestService
 
 
-class TestWordTest(unittest.TestCase):
+class TestWordTestService(unittest.TestCase):
     def setUp(self):
         self.exercise_repository = StubExerciseRepository()
         self.test = WordTestService(self.exercise_repository, StubStatsRepository())
