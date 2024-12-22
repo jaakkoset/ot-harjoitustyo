@@ -1,6 +1,3 @@
-from repository.exercise_repository import exercise_repository
-
-
 class Exercise:
     """
     An Exercise object includes all the questions and answers of a given exercise and it
@@ -13,11 +10,7 @@ class Exercise:
         number_of_question: the number of questions.
     """
 
-    def __init__(
-        self,
-        exercise_id,
-        exercise_repo=exercise_repository,
-    ):
+    def __init__(self, exercise_id, exercise_repo):
         self.exercise_id = exercise_id
         self.exercise_repo = exercise_repo
 

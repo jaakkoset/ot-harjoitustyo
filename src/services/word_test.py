@@ -25,12 +25,12 @@ class WordTestService:
         self.exercise = None
         self.question_index = 0
 
-    def new_exercise(self, exercise_id) -> None:
+    def new_exercise(self, exercise_id, exercise_repo=exercise_repository) -> None:
         """Create a new exercise.
 
         Args:
             exercise_id: the id of the exercise in the database"""
-        self.exercise = Exercise(exercise_id)
+        self.exercise = Exercise(exercise_id, exercise_repo)
 
     def question(self):
         """Return the current question"""
