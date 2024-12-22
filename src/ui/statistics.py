@@ -1,5 +1,5 @@
 from tkinter import ttk, constants
-#from services.statistics import StatisticsService
+from services.statistics import StatisticsService
 
 
 class StatisticsUI:
@@ -21,7 +21,7 @@ class StatisticsUI:
         self._frame = ttk.Frame(master=self._root)
         self._set_title()
         self._set_main_menu_button()
-        self._set_statistics()
+        self._display_statistics()
         self._frame.grid_columnconfigure(0, weight=1, minsize=600)
 
     def _set_title(self):
@@ -45,5 +45,8 @@ class StatisticsUI:
             pady=5,
         )
 
-    def _set_statistics(self):
-        pass
+    def _display_statistics(self):
+        """Display all statistics"""
+        stats = StatisticsService().printable_statistics()
+        stats_label = ttk.Label(master=self._frame, text=stats)
+        stats_label.grid(padx=10, pady=10)
