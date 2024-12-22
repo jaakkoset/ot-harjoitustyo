@@ -2,18 +2,20 @@
 
 ## Sovelluksen tarkoitus
 
-Sovelluksella tehdään latinan kieleen liittyviä harjoituksia. Sovelluksessa on muutamia eri tehtävätyyppejä joita käyttäjä voi tehdä. Kysymykset ja niiden oikeat vastaukset tallennetaan tietokantaan ja ohjelma arpoo niitä satunnaisessa järjestyksessä käyttäjälle.
+Sovelluksella tehdään latinan kieleen liittyviä harjoituksia. Sovelluksessa on kaksi sanakoetta joita käyttäjä voi tehdä. Kysymykset ja niiden oikeat vastaukset tallennetaan tietokantaan ja ohjelma antaa kysymyksiä järjestyksessä käyttäjälle.
 
 ## Käyttäjä
 
 Sovelluksella on vain yksi käyttäjä.
 
-## Suunnitellut toiminnallisuudet
+## Toiminnallisuudet
 
- - (Tehty) Käyttäjä voi tehdä sanatestejä, joissa hänen pitää antaa sanasta oikea käännös.
- 
- - Käyttäjä voi tehdä harjoituksia, joissa hänen pitää tunnistaa sanojen taivutusmuotoja.
- 
- - Käyttäjä voi tehdä harjoituksia, joissa hänen pitää tunnistaa lauserakenteita esimerkkilauseista.
- 
- - (Tehty) Käyttäjä voi nähdä tilastoista kuinka moneen tehtävään hän on vastannut.
+- Käyttäjä voi tehdä sanakokeita, joissa hänen pitää antaa sanasta oikea käännös
+- Käyttäjä voi nähdä tilastoista kuinka monta oikeaa ja väärää vastausta hän on antanut ja kuinka monta sanakoetta hän on suorittanut
+
+## Jatkokehitysideoita
+
+- Sanakokeiden lisäksi muunkin tyyppisiä tehtäviä
+- Laskuri, josta näkee kuinka monta kysymystä tehtävässä on jäljellä
+- Tehtävässä voi kelata kysymyksiä taaksepäin
+- Tilastoista näkee, mitkä tehtävät on suorittanut
