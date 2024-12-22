@@ -5,6 +5,8 @@ WORD_TEST_LABELS = {"heading": "Valitse sanakoe"}
 
 
 class SelectExercise:
+    """UI for selecting the exercise."""
+
     def __init__(
         self, root, exercise_type: str, handle_main_menu, handle_open_exercise
     ):
@@ -36,9 +38,9 @@ class SelectExercise:
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         heading_label = ttk.Label(master=self._frame, text=self.labels["heading"])
-
-        self._entry = ttk.Entry(master=self._frame)
         heading_label.grid(padx=10, pady=10)
+
+        self._set_main_menu_button()
 
         exercises = self._get_exercises()
 
@@ -57,3 +59,19 @@ class SelectExercise:
             )
 
         self._frame.grid_columnconfigure(0, weight=1, minsize=600)
+
+    def _set_main_menu_button(self):
+        """Set the main menu button"""
+        main_menu_button = ttk.Button(
+            master=self._frame,
+            text="Takaisin päävalikkoon",
+            command=self._handle_main_menu,
+        )
+        main_menu_button.grid(
+            row=1,
+            column=0,
+            columnspan=2,
+            sticky=(constants.W),
+            padx=10,
+            pady=5,
+        )
