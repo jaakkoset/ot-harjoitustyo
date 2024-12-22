@@ -59,10 +59,10 @@ class UI:
         if exercise_type == "word test":
             handle_open_exercise = self._handle_word_test
         else:
-            raise TypeError("Ei ollut sanakoe")
+            raise TypeError("Exercise type was not word test.")
 
         self._current_view = SelectExercise(
-            self._root, exercise_type, self._handle_main_menu, handle_open_exercise
+            self._root, self._handle_main_menu, handle_open_exercise
         )
 
         self._current_view.pack()
