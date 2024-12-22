@@ -27,6 +27,13 @@ class TestWordTestService(unittest.TestCase):
         new_word = self.test.question()
         self.assertTrue(new_word, "puer")
 
+    def test_change_to_next_question_returns_false(self):
+        """Method change_to_next_question returns False after all questions have been
+        iterated"""
+        self.assertTrue(self.test.change_to_next_question())
+        self.assertTrue(self.test.change_to_next_question())
+        self.assertFalse(self.test.change_to_next_question())
+
     def test_printable_answers(self):
         """printable_translations works correctly"""
         self.test.change_to_next_question()
@@ -39,11 +46,31 @@ class TestWordTestService(unittest.TestCase):
         name = self.test.exercise_name()
         self.assertEqual(name, "Helppo sanakoe")
 
-    def test_change_to_next_question_returns_false(self):
-        """Method change_to_next_question returns False after all questions have been
-        iterated"""
-        self.assertTrue(self.test.change_to_next_question())
-        self.assertFalse(self.test.change_to_next_question())
+    def test_number_of_questions(self):
+        number = self.test.exercise.number_of_questions()
+        self.assertEqual(3, number)
+
+    def test_is_word_test_completed_returns_false(self):
+        """Method _is_word_test_completed returns False if all questions have not been
+        answered correctly"""
+        self.assertFalse(self.test._is_word_test_completed())
+        self.test.check_answer("tyttö")
+        self.assertFalse(self.test._is_word_test_completed())
+        self.test.change_to_next_question()
+        self.test.check_answer("lapsi")
+        self.test.change_to_next_question()
+        self.test.check_answer("WRONG ANSWER")
+        self.assertFalse(self.test._is_word_test_completed())
+
+    def test_is_word_test_completed_returns_true(self):
+        """Method _is_word_test_completed returns True if all questions have been
+        answered correctly"""
+        self.test.check_answer("tyttö")
+        self.test.change_to_next_question()
+        self.test.check_answer("poika")
+        self.test.change_to_next_question()
+        self.test.check_answer("sota")
+        self.assertTrue(self.test._is_word_test_completed())
 
 
 class StubExerciseRepository:
@@ -61,6 +88,7 @@ class StubExerciseRepository:
                 "question": "puer",
                 "answers": ("poika", "lapsi"),
             },
+            {"question": "bellum", "answers": ("sota",)},
         ]
         self.exercise_info = {
             "name": "Helppo sanakoe",
