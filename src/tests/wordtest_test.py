@@ -1,17 +1,12 @@
 import unittest
-from entities.exercise import Exercise
+from services.word_test import WordTestService
 
 
-class TestExercise(unittest.TestCase):
+class TestWordTest(unittest.TestCase):
     def setUp(self):
-        self.test = Exercise(1, StubExerciseRepository())
-
-    def test_change_to_next_question(self):
-        """change_to_next_word actually changes the word"""
-        old_word = self.test.question()
-        self.test.change_to_next_question()
-        new_word = self.test.question()
-        self.assertFalse(old_word == new_word)
+        self.exercise_repository = StubExerciseRepository()
+        self.test = WordTestService(StubStatsRepository(), self.exercise_repository)
+        self.test.new_exercise(1, self.exercise_repository)
 
     def test_question(self):
         """Method question returns the correct question"""
@@ -19,11 +14,18 @@ class TestExercise(unittest.TestCase):
         should_be = "puella"
         self.assertEqual(should_be, question)
 
-    def test_answers(self):
-        """Method answers returns the answers"""
-        answers = self.test.answers()
-        should_be = ("tyttö",)
-        self.assertEqual(should_be, answers)
+    def test_check_answer(self):
+        """Method check_answer returns True when the answer is true and False otherwise"""
+        wrong_answer = self.test.check_answer("tyllerö")
+        self.assertFalse(wrong_answer)
+        correct_answer = self.test.check_answer("tyttö")
+        self.assertTrue(correct_answer)
+
+    def test_change_to_next_question(self):
+        """change_to_next_word actually changes the word"""
+        self.test.change_to_next_question()
+        new_word = self.test.question()
+        self.assertTrue(new_word, "puer")
 
     def test_printable_answers(self):
         """printable_translations works correctly"""
@@ -32,18 +34,16 @@ class TestExercise(unittest.TestCase):
         should_be = "  poika  lapsi"
         self.assertEqual(should_be, next_word)
 
+    def test_exercise_name(self):
+        """exercise_name returns the correct name"""
+        name = self.test.exercise_name()
+        self.assertEqual(name, "Helppo sanakoe")
+
     def test_change_to_next_question_returns_false(self):
         """Method change_to_next_question returns False after all questions have been
         iterated"""
         self.assertTrue(self.test.change_to_next_question())
         self.assertFalse(self.test.change_to_next_question())
-
-    def test_check_answer(self):
-        """Method check_answer returns True when the answer is true and False otherwise"""
-        wrong_answer = self.test.check_answer("tyllerö")
-        self.assertFalse(wrong_answer)
-        correct_answer = self.test.check_answer("tyttö")
-        self.assertTrue(correct_answer)
 
 
 class StubExerciseRepository:
@@ -73,3 +73,8 @@ class StubExerciseRepository:
 
     def get_exercise_info(self, exercise_id):
         return self.exercise_info
+
+
+class StubStatsRepository:
+    def __init__(self):
+        pass
