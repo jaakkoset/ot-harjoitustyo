@@ -1,7 +1,7 @@
 class Exercise:
     """
     An Exercise object includes all the questions and answers of a given exercise and it
-    also has methods for handling them and checking answers given by the user.
+    has methods for returning them.
 
     Attributes:
         exercise_id: id number of the exercise.
@@ -11,11 +11,10 @@ class Exercise:
     """
 
     def __init__(self, exercise_id, exercise_repo):
-        self.exercise_id = exercise_id
-        self.exercise_repo = exercise_repo
+        self.__exercise_repo = exercise_repo
 
-        self.__questions = self.exercise_repo.get_exercise_questions(exercise_id)
-        self.__exercise_info = self.exercise_repo.get_exercise_info(exercise_id)
+        self.__questions = self.__exercise_repo.get_exercise_questions(exercise_id)
+        self.__exercise_info = self.__exercise_repo.get_exercise_info(exercise_id)
         self.__number_of_question = len(self.__questions)
 
     def question(self, index: int) -> str:
