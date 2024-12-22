@@ -1,5 +1,5 @@
 from tkinter import ttk, constants
-from entities.exercise import Exercise
+from services.word_test import WordTestService
 
 
 class ExerciseUI:
@@ -7,7 +7,6 @@ class ExerciseUI:
         self._root = root
         self._handle_main_menu = handle_main_menu
         self.exercise_id = exercise_id
-        self.exercise = Exercise(self.exercise_id)
 
         self._frame = None
         self._entry = None
@@ -16,6 +15,8 @@ class ExerciseUI:
         self._was_answer_correct_label = None
         self._next_question_button = None
 
+        self.test_service = WordTestService()
+        self.test_service.new_exercise(self.exercise_id)
         self._initialize()
 
     def pack(self):
@@ -68,7 +69,7 @@ class ExerciseUI:
     def _set_question(self):
         """Display the question"""
         question_label = ttk.Label(
-            master=self._frame, text=f"Suomenna sana: {self.exercise.question()}"
+            master=self._frame, text=f"Suomenna sana: {self.test_service.question()}"
         )
         question_label.grid(row=2, padx=10, pady=10)
 
@@ -135,7 +136,7 @@ class ExerciseUI:
     def _handle_answer(self):
         """Handles the anwser given by the user"""
         entry_value = self._entry.get()
-        answer_is_correct = self.exercise.check_answer(entry_value)
+        answer_is_correct = self.test_service.check_answer(entry_value)
         if answer_is_correct:
             self._display_correct_answer_view()
         else:
@@ -146,7 +147,7 @@ class ExerciseUI:
 
     def _handle_next_question(self):
         """Changes the question or if there are no questions left, ends the exercise"""
-        questions_was_changed = self.exercise.change_to_next_question()
+        questions_was_changed = self.test_service.change_to_next_question()
         if questions_was_changed:
             self._initialize()
         else:
