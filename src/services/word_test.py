@@ -46,25 +46,30 @@ class WordTestService:
         Return True when the answer is correct and False otherwise."""
         answer_is_correct = answer in self.exercise.answers(self.question_index)
         if answer_is_correct:
-            self.__is_word_test_completed()
+            self.correct_answers += 1
+            self.word_test_completed()
             self.__add_correct_word_test_answer_to_stats()
             return True
         self.__add_wrong_word_test_answer_to_stats()
         return False
 
-    def __is_word_test_completed(self):
-        """Check whether the user has answered all questions correctly. If so, add this
-        the statistics."""
-        if not self.__wordtest_completion_added_to_stats:
-            self.correct_answers += 1
+    def word_test_completed(self):
+        """If all questions have been answered correctly, add one completed wordtest to
+        statistics."""
+        if self.__is_word_test_completed():
+            self.__wordtest_completion_added_to_stats = True
+            self.__add_completed_word_test_to_stats()
 
+    def __is_word_test_completed(self) -> bool:
+        """Check whether the user has answered all questions correctly. If so, return
+        True and False otherwise"""
+        if not self.__wordtest_completion_added_to_stats:
             all_questions_have_been_answered_correctly = (
                 self.correct_answers >= self.exercise.number_of_questions()
             )
-
             if all_questions_have_been_answered_correctly:
-                self.__wordtest_completion_added_to_stats = True
-                self.__add_completed_word_test_to_stats()
+                return True
+        return False
 
     def change_to_next_question(self) -> bool:
         """
