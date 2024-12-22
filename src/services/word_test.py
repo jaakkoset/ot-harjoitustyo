@@ -56,29 +56,31 @@ class WordTestService:
     def word_test_completed(self):
         """If all questions have been answered correctly, add one completed wordtest to
         statistics."""
-        if self.__is_word_test_completed():
-            self.__wordtest_completion_added_to_stats = True
-            self.__add_completed_word_test_to_stats()
+        if not self.__wordtest_completion_added_to_stats:
+            if self._is_word_test_completed():
+                self.__wordtest_completion_added_to_stats = True
+                self.__add_completed_word_test_to_stats()
 
-    def __is_word_test_completed(self) -> bool:
+    def _is_word_test_completed(self) -> bool:
         """Check whether the user has answered all questions correctly. If so, return
         True and False otherwise"""
-        if not self.__wordtest_completion_added_to_stats:
-            all_questions_have_been_answered_correctly = (
-                self.correct_answers >= self.exercise.number_of_questions()
-            )
-            if all_questions_have_been_answered_correctly:
-                return True
+        all_questions_have_been_answered_correctly = (
+            self.correct_answers >= self.exercise.number_of_questions()
+        )
+        if all_questions_have_been_answered_correctly:
+            return True
         return False
 
     def change_to_next_question(self) -> bool:
         """
         Change the current question. Return True if question is changed and False if
         there are no questions left."""
-        self.question_index += 1
-        no_questions_left = self.question_index >= self.exercise.number_of_questions()
+        no_questions_left = (
+            self.question_index + 1 >= self.exercise.number_of_questions()
+        )
         if no_questions_left:
             return False
+        self.question_index += 1
         return True
 
     def printable_answers(self) -> str:
