@@ -30,9 +30,9 @@ class TestWordTest(unittest.TestCase):
     def test_printable_answers(self):
         """printable_translations works correctly"""
         self.test.change_to_next_question()
-        next_word = self.test.printable_answers()
-        should_be = "  poika  lapsi"
-        self.assertEqual(should_be, next_word)
+        actually_is = self.test.printable_answers()
+        should_be = "Hyväksytyt vastaukset ovat:\n   poika   lapsi"
+        self.assertEqual(should_be, actually_is)
 
     def test_exercise_name(self):
         """exercise_name returns the correct name"""

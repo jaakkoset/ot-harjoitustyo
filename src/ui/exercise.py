@@ -13,6 +13,7 @@ class ExerciseUI:
         self._question_label = None
         self._answer_button = None
         self._answer_label = None
+        self._correct_answers_label = None
         self._next_question_button = None
 
         self.test_service = WordTestService()
@@ -137,6 +138,7 @@ class ExerciseUI:
         self._set_question()
         self._set_answer_label("Oikein")
         self._set_next_question_button()
+        self._display_correct_answers()
 
     def _display_wrong_answer_view(self):
         """Display the view the user gets after answering incorrectly"""
@@ -169,3 +171,9 @@ class ExerciseUI:
         self._set_title()
         self._set_main_menu_button()
         self._set_no_more_questions_label()
+
+    def _display_correct_answers(self):
+        """Display all correct answers to the question"""
+        answers = self.test_service.printable_answers()
+        self._correct_answers_label = ttk.Label(master=self._frame, text=answers)
+        self._correct_answers_label.grid(row=7, padx=10, pady=10)

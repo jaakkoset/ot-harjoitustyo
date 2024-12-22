@@ -78,9 +78,9 @@ class WordTestService:
 
     def printable_answers(self) -> str:
         """Return the answers of the current question in one string"""
-        text = ""
+        text = "Hyväksytyt vastaukset ovat:\n"
         for answer in self.exercise.answers(self.question_index):
-            text += "  " + answer
+            text += "   " + answer
         return text
 
     def exercise_name(self) -> str:
