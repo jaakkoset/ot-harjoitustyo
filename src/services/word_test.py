@@ -60,6 +60,10 @@ class WordTestService:
             text += "  " + answer
         return text
 
+    def exercise_name(self) -> str:
+        """Return the name of the current exercise"""
+        return self.exercise.name()
+
     def get_all_word_tests(self) -> list:
         """Return a list of all word tests. For each word test the list containes a
         dictionary that has id, name, guide and type of the word test."""

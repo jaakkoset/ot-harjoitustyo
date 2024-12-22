@@ -47,7 +47,9 @@ class ExerciseUI:
 
     def _set_title(self):
         """Set the title"""
-        heading_label = ttk.Label(master=self._frame, text="Sanakoe")
+        heading_label = ttk.Label(
+            master=self._frame, text=self.test_service.exercise_name()
+        )
         heading_label.grid(padx=10, pady=10)
 
     def _set_main_menu_button(self):

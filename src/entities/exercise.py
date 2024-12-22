@@ -22,7 +22,7 @@ class Exercise:
         self.exercise_repo = exercise_repo
 
         self.__questions = self.exercise_repo.get_exercise_questions(exercise_id)
-        # self.__exercise_info = self.exercise_repo.get_exercise_info(exercise_id)
+        self.__exercise_info = self.exercise_repo.get_exercise_info(exercise_id)
         self.__number_of_question = len(self.__questions)
 
     def question(self, index: int) -> str:
@@ -41,3 +41,6 @@ class Exercise:
 
     def number_of_questions(self):
         return self.__number_of_question
+
+    def name(self):
+        return self.__exercise_info["name"]
