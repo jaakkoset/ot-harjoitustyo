@@ -16,8 +16,7 @@ class ExerciseUI:
         self._correct_answers_label = None
         self._next_question_button = None
 
-        self.test_service = WordTestService()
-        self.test_service.new_exercise(self.exercise_id)
+        self.test_service = WordTestService(self.exercise_id)
         self._initialize()
 
     def pack(self):

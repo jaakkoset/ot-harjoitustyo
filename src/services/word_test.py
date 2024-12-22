@@ -19,23 +19,17 @@ class WordTestService:
 
     def __init__(
         self,
+        exercise_id,
         exercise_repo=exercise_repository,
         stats_repo=stats_repository,
     ):
         self.exercise_repo = exercise_repo
         self.stats_repo = stats_repo
 
-        self.exercise = None
+        self.exercise = Exercise(exercise_id, exercise_repo)
         self.question_index = 0
         self.correct_answers = 0
         self.__wordtest_completion_added_to_stats = False
-
-    def new_exercise(self, exercise_id, exercise_repo=exercise_repository) -> None:
-        """Create a new exercise.
-
-        Args:
-            exercise_id: the id of the exercise in the database"""
-        self.exercise = Exercise(exercise_id, exercise_repo)
 
     def question(self):
         """Return the current question"""
@@ -93,11 +87,6 @@ class WordTestService:
     def exercise_name(self) -> str:
         """Return the name of the current exercise"""
         return self.exercise.name()
-
-    def get_all_word_tests(self) -> list:
-        """Return a list of all word tests. For each word test the list containes a
-        dictionary that has id, name, guide and type of the word test."""
-        return self.exercise_repo.get_all_exercises("word test")
 
     def __add_correct_word_test_answer_to_stats(self):
         self.stats_repo.add_correct_word_test_answer()

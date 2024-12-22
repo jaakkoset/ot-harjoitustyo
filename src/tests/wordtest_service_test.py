@@ -5,8 +5,7 @@ from services.word_test import WordTestService
 class TestWordTestService(unittest.TestCase):
     def setUp(self):
         self.exercise_repository = StubExerciseRepository()
-        self.test = WordTestService(self.exercise_repository, StubStatsRepository())
-        self.test.new_exercise(1, self.exercise_repository)
+        self.test = WordTestService(1, self.exercise_repository, StubStatsRepository())
 
     def test_question(self):
         """Method question returns the correct question"""

@@ -1,6 +1,5 @@
 from tkinter import ttk, constants
-from services.word_test import WordTestService
-
+from services.exercises import ExercisesService
 
 class SelectExercise:
     """UI for selecting the exercise."""
@@ -18,7 +17,7 @@ class SelectExercise:
 
     def _get_exercises(self) -> list:
         """Get a list of all exercises"""
-        return WordTestService().get_all_word_tests()
+        return ExercisesService().get_all_word_tests()
 
     def pack(self):
         self._frame.pack(fill=constants.X)

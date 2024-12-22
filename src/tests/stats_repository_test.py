@@ -9,8 +9,7 @@ class TestStatsRepository(unittest.TestCase):
 
     def setUp(self):
         self.stats_repo = stats_repository
-        self.test = WordTestService(stats_repo=self.stats_repo)
-        self.test.new_exercise(1)
+        self.test = WordTestService(1, stats_repo=self.stats_repo)
 
         self.stats_dictionary = {
             "correct_word_test_answers": 0,
