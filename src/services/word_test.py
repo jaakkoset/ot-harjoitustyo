@@ -8,10 +8,11 @@ class WordTestService:
 
     Attributes:
         exercise_repo: the repository where exercises are saved.
-        stats_repo: the repository where stats are saved.
+        stats_repo: the repository where statistics are saved.
         exercise: an Exercise type object that as all questions and answers of an
         exercise.
         question_index: an integer count of the questions that have been answered.
+        correct_answers: an integer count of the correct answers given by the user.
     """
 
     def __init__(
@@ -24,6 +25,7 @@ class WordTestService:
 
         self.exercise = None
         self.question_index = 0
+        self.correct_answers = 0
 
     def new_exercise(self, exercise_id, exercise_repo=exercise_repository) -> None:
         """Create a new exercise.
@@ -37,10 +39,13 @@ class WordTestService:
         return self.exercise.question(self.question_index)
 
     def check_answer(self, answer) -> bool:
-        """Check the answer given by the user. Return True when the answer is correct
-        and False otherwise."""
-        if answer in self.exercise.answers(self.question_index):
+        """Check the answer given by the user and add this information to statistics.
+        Return True when the answer is correct and False otherwise."""
+        answer_is_correct = answer in self.exercise.answers(self.question_index)
+        if answer_is_correct:
+            self.add_correct_word_test_answer_to_stats()
             return True
+        self.add_wrong_word_test_answer_to_stats()
         return False
 
     def change_to_next_question(self) -> bool:

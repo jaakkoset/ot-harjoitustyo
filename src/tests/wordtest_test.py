@@ -5,7 +5,7 @@ from services.word_test import WordTestService
 class TestWordTest(unittest.TestCase):
     def setUp(self):
         self.exercise_repository = StubExerciseRepository()
-        self.test = WordTestService(StubStatsRepository(), self.exercise_repository)
+        self.test = WordTestService(self.exercise_repository, StubStatsRepository())
         self.test.new_exercise(1, self.exercise_repository)
 
     def test_question(self):
@@ -22,7 +22,7 @@ class TestWordTest(unittest.TestCase):
         self.assertTrue(correct_answer)
 
     def test_change_to_next_question(self):
-        """change_to_next_word actually changes the word"""
+        """Method change_to_next_word actually changes the word"""
         self.test.change_to_next_question()
         new_word = self.test.question()
         self.assertTrue(new_word, "puer")
@@ -74,7 +74,25 @@ class StubExerciseRepository:
     def get_exercise_info(self, exercise_id):
         return self.exercise_info
 
+    def add_correct_word_test_answer_to_stats(self):
+        pass
+
+    def add_wrong_word_test_answer_to_stats(self):
+        pass
+
+    def add_completed_word_test_to_stats(self):
+        pass
+
 
 class StubStatsRepository:
     def __init__(self):
+        pass
+
+    def add_correct_word_test_answer(self):
+        pass
+
+    def add_wrong_word_test_answer(self):
+        pass
+
+    def add_completed_word_test(self):
         pass
