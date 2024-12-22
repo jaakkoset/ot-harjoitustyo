@@ -28,7 +28,7 @@ Käynnistettäessä ohjelma avautuu päävalikkoon. Painamalla 'Tee sanakoe' sii
 
 ![](./kuvat/valitse_sanakoe.png)
 
-Sanakokeen voi valita painamalla nappia. Päävalikkoon voi palata painamalla 'Takaisin päävalikkoon'..
+Sanakokeen voi valita painamalla nappia. Päävalikkoon voi palata painamalla 'Takaisin päävalikkoon'.
 
 ## Sanakoe
 
