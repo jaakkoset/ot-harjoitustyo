@@ -12,7 +12,7 @@ class ExerciseUI:
         self._entry = None
         self._question_label = None
         self._answer_button = None
-        self._was_answer_correct_label = None
+        self._answer_label = None
         self._next_question_button = None
 
         self.test_service = WordTestService()
@@ -44,13 +44,14 @@ class ExerciseUI:
         self._set_question()
         self._set_answer_entry_field()
         self._set_answer_button()
+        self._set_next_question_button()
 
     def _set_title(self):
         """Set the title"""
         heading_label = ttk.Label(
             master=self._frame, text=self.test_service.exercise_name()
         )
-        heading_label.grid(padx=10, pady=10)
+        heading_label.grid(row=0, padx=10, pady=10)
 
     def _set_main_menu_button(self):
         """Set the main menu button"""
@@ -103,6 +104,7 @@ class ExerciseUI:
             command=self._handle_next_question,
         )
         self._next_question_button.grid(
+            row=6,
             column=0,
             columnspan=2,
             padx=10,
@@ -110,18 +112,22 @@ class ExerciseUI:
         )
 
     def _set_answer_label(self, label_text: str):
-        """Display the label that tells whether the answer was correct or not.
+        """Display the label that tells whether the answer was correct, wrong or empty.
 
         Args:
             label_text: the text to be displayed"""
-        self.destroy_widget(self._was_answer_correct_label)
-        self._was_answer_correct_label = ttk.Label(master=self._frame, text=label_text)
-        self._was_answer_correct_label.grid(padx=10, pady=10)
+        self.destroy_widget(self._answer_label)
+        self._answer_label = ttk.Label(master=self._frame, text=label_text)
+        self._answer_label.grid(row=5, padx=10, pady=10)
 
     def _set_no_more_questions_label(self):
         """Display the label that tells that the exercise is completed"""
         no_more_questions_label = ttk.Label(master=self._frame, text="Koe on ohi")
         no_more_questions_label.grid(padx=10, pady=10)
+
+    def display_empty_answer_view(self):
+        """Display the error label for an empty answer"""
+        self._set_answer_label("Tyhjää vastausta ei hyväksytä")
 
     def _display_correct_answer_view(self):
         """Display the view the user gets after answering correctly"""
@@ -130,6 +136,7 @@ class ExerciseUI:
         self._set_main_menu_button()
         self._set_question()
         self._set_answer_label("Oikein")
+        self._set_next_question_button()
 
     def _display_wrong_answer_view(self):
         """Display the view the user gets after answering incorrectly"""
@@ -138,14 +145,15 @@ class ExerciseUI:
     def _handle_answer(self):
         """Handles the anwser given by the user"""
         entry_value = self._entry.get()
-        answer_is_correct = self.test_service.check_answer(entry_value)
-        if answer_is_correct:
-            self._display_correct_answer_view()
+        answer_is_empty = entry_value == ""
+        if answer_is_empty:
+            self.display_empty_answer_view()
         else:
-            self._display_wrong_answer_view()
-
-        self.destroy_widget(self._next_question_button)
-        self._set_next_question_button()
+            answer_is_correct = self.test_service.check_answer(entry_value)
+            if answer_is_correct:
+                self._display_correct_answer_view()
+            else:
+                self._display_wrong_answer_view()
 
     def _handle_next_question(self):
         """Changes the question or if there are no questions left, ends the exercise"""
